@@ -230,3 +230,27 @@ textarea.campo__control:focus-visible { border-radius: var(--radio-3); }
 .on-marfil .boton--claro:hover { background: var(--cobalto); color: var(--marfil); }
 .on-marino .boton--secundario, .on-azul .boton--secundario { border-color: var(--crema); color: var(--crema); }
 .on-marino .boton--secundario:hover, .on-azul .boton--secundario:hover { background: var(--crema); color: var(--marino); }
+
+/* ---------- Guardia de páginas protegidas ---------- */
+.verificando body { visibility: hidden; }
+
+/* ---------- Alerta general de formulario ---------- */
+.alerta { display: flex; align-items: flex-start; gap: var(--esp-2); padding: 12px 14px; border-radius: var(--radio-boton); font-size: var(--texto-sm); line-height: 20px; font-weight: var(--peso-medio); }
+.alerta[hidden] { display: none; }
+.alerta--error { background: var(--rojo-fondo); color: #7a2a22; border: 1.5px solid var(--rojo-apagado); }
+.alerta--info { background: var(--crema); color: var(--marino); border: 1.5px solid var(--dorado); }
+
+/* ---------- Botón con aspecto de enlace (pie de portales) ---------- */
+.enlace-boton { background: none; border: 0; padding: 4px 0; color: var(--crema); font-size: var(--texto-xs); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; opacity: 0.85; }
+.enlace-boton:hover { color: var(--miel); opacity: 1; }
+.enlace-boton:focus-visible { box-shadow: 0 0 0 5px var(--marfil); }
+.pie__reinicio { margin-top: var(--esp-4); }
+
+/* ---------- Minimapa (js/mapa.js) ---------- */
+.mapa { background: var(--marino); border-radius: var(--radio-3); overflow: hidden; border: 1px solid var(--pizarra); }
+.mapa__svg { width: 100%; height: auto; display: block; touch-action: manipulation; }
+.mapa__nodo { cursor: pointer; outline: none; }
+.mapa__aro { stroke: transparent; }
+.mapa__nodo:focus-visible .mapa__aro { stroke: var(--marfil); }
+.mapa__leyenda { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; padding: 10px 14px 12px; margin: 0; background: var(--marino); color: var(--crema); font-size: var(--texto-xs); border-top: 1px solid var(--pizarra); }
+.mapa__leyenda li { display: inline-flex; align-items: center; gap: 6px; }

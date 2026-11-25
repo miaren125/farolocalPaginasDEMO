@@ -4,32 +4,165 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registrar mi negocio · FaroLocal</title>
-  <meta name="description" content="Registra tu negocio y enciende tu Faro en el barrio.">
+  <meta name="description" content="Registra tu negocio en FaroLocal en menos de 5 minutos y enciende tu Faro en el barrio.">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
-  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/acceso.css">
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
-  <header class="cabecera">
-    <div class="contenedor cabecera__fila">
-      <a class="cabecera__logo" href="index.html" aria-label="FaroLocal, ir al inicio"><img src="assets/img/logo-nav.png" alt="FaroLocal" width="120" height="59"></a>
-      <div class="cabecera__cuenta"><a class="boton boton--claro boton--chico" href="index.html">Volver al inicio</a></div>
+
+  <div class="acceso">
+    <div class="acceso__columna">
+      <aside class="acceso__marca">
+        <a class="acceso__logo" href="index.html" aria-label="FaroLocal, ir al inicio">
+          <img src="assets/img/logo-login.png" alt="FaroLocal" width="628" height="222">
+        </a>
+        <p class="acceso__frase">Enciende tu Faro <span>en menos de 5 minutos.</span></p>
+        <div class="acceso__arte">
+          <picture>
+            <source srcset="assets/img/ilustracion-tienda-login.webp" type="image/webp">
+            <img src="assets/img/ilustracion-tienda-login.png" alt="" width="1035" height="1068">
+          </picture>
+        </div>
+      </aside>
     </div>
-  </header>
-  <main id="contenido" class="contenedor" style="padding-block: 64px;">
-    <p class="antetitulo">FaroLocal</p>
-    <h1>Registrar mi negocio</h1>
-    <p>Esta página se construye en un paso posterior.</p>
-  </main>
-  <footer class="pie">
-    <div class="contenedor">
-      <p>FaroLocal no garantiza seguridad: informa para decidir mejor un trayecto.</p>
-      <p>© 2026 FaroLocal · Proyecto del Concurso de Innovación Tecnológica</p>
-    </div>
-  </footer>
+
+    <main class="acceso__form" id="contenido">
+      <div class="acceso__tarjeta acceso__tarjeta--ancha">
+        <h1>Registrar mi negocio</h1>
+        <ol class="progreso" aria-label="Progreso del registro">
+          <li id="prog-1" aria-current="step">Tu cuenta</li>
+          <li id="prog-2">Tu negocio</li>
+        </ol>
+
+        <form id="form-registro" novalidate>
+          <div class="alerta alerta--error" id="registro-error" role="alert" hidden>
+            <svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-error"></use></svg>
+            <span id="registro-error-texto"></span>
+          </div>
+
+          <!-- Paso 1 -->
+          <section class="paso" id="paso-1" aria-labelledby="titulo-paso-1">
+            <h2 class="paso-titulo" id="titulo-paso-1" tabindex="-1">Paso 1 de 2: Tu cuenta</h2>
+            <div class="campo">
+              <label class="campo__etiqueta" for="r-nombre">Nombre del titular</label>
+              <input class="campo__control" id="r-nombre" type="text" autocomplete="name" required>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="r-correo">Correo electrónico</label>
+              <input class="campo__control" id="r-correo" type="email" inputmode="email" autocomplete="email" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="r-telefono">Teléfono</label>
+              <input class="campo__control" id="r-telefono" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10 dígitos" required>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="r-password">Contraseña</label>
+              <div class="campo__envoltura">
+                <input class="campo__control" id="r-password" type="password" autocomplete="new-password" required>
+                <button class="campo__ojo" type="button" data-ver="r-password" aria-pressed="false" aria-controls="r-password" aria-label="Mostrar contraseña">
+                  <svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-ojo"></use></svg>
+                </button>
+              </div>
+              <span class="campo__ayuda">Mínimo 8 caracteres.</span>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="r-confirmar">Confirmar contraseña</label>
+              <div class="campo__envoltura">
+                <input class="campo__control" id="r-confirmar" type="password" autocomplete="new-password" required>
+                <button class="campo__ojo" type="button" data-ver="r-confirmar" aria-pressed="false" aria-controls="r-confirmar" aria-label="Mostrar contraseña">
+                  <svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-ojo"></use></svg>
+                </button>
+              </div>
+            </div>
+            <div class="acceso__acciones">
+              <button class="boton boton--cobalto boton--bloque" type="submit" id="continuar">Continuar</button>
+              <a class="boton boton--secundario boton--bloque" href="login.html">Ya tengo cuenta</a>
+            </div>
+          </section>
+
+          <!-- Paso 2 -->
+          <section class="paso" id="paso-2" aria-labelledby="titulo-paso-2" hidden>
+            <h2 class="paso-titulo" id="titulo-paso-2" tabindex="-1">Paso 2 de 2: Tu negocio</h2>
+            <div class="campo">
+              <label class="campo__etiqueta" for="n-nombre">Nombre del negocio</label>
+              <input class="campo__control" id="n-nombre" type="text" autocomplete="organization" required>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="n-giro">Giro</label>
+              <select class="campo__control" id="n-giro" required>
+                <option value="">Elige el giro</option>
+                <option>Abarrotes</option><option>Farmacia</option><option>Taquería</option><option>Cafetería</option>
+                <option>Lonchería</option><option>Gasolinera</option><option>Papelería</option><option>Otro</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="n-direccion">Dirección</label>
+              <input class="campo__control" id="n-direccion" type="text" autocomplete="street-address" required>
+            </div>
+
+            <fieldset class="campo" id="g-ubicacion">
+              <legend class="campo__etiqueta">Ubicación en el mapa</legend>
+              <div class="mapa-bloque">
+                <p class="campo__ayuda" id="ubicacion-ayuda">Toca el cruce más cercano a tu puerta.</p>
+                <div id="mapa-registro"></div>
+                <p class="cruce-elegido" id="cruce-elegido" aria-live="polite">Aún no eliges un cruce.</p>
+              </div>
+            </fieldset>
+
+            <fieldset class="campo" id="g-horario">
+              <legend class="campo__etiqueta">Horario</legend>
+              <div class="campo__fila">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="n-abre">Abrimos a las</label>
+                  <input class="campo__control" id="n-abre" type="time" value="09:00" required>
+                </div>
+                <div class="campo">
+                  <label class="campo__etiqueta" for="n-cierra">Cerramos a las</label>
+                  <input class="campo__control" id="n-cierra" type="time" value="21:00" required>
+                </div>
+              </div>
+              <label class="casilla"><input type="checkbox" id="n-24h"> Abrimos las 24 horas</label>
+            </fieldset>
+
+            <fieldset class="campo" id="g-servicios">
+              <legend class="campo__etiqueta">Servicios para peatones</legend>
+              <span class="campo__ayuda" id="servicios-ayuda">Elige los que ofreces a quien camina de noche.</span>
+              <div class="opciones">
+                <label class="opcion"><input type="checkbox" name="servicio" value="Agua"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Agua</span></label>
+                <label class="opcion"><input type="checkbox" name="servicio" value="Teléfono"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Teléfono</span></label>
+                <label class="opcion"><input type="checkbox" name="servicio" value="Baño"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Baño</span></label>
+                <label class="opcion"><input type="checkbox" name="servicio" value="Cámara de vigilancia"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Cámara de vigilancia</span></label>
+                <label class="opcion"><input type="checkbox" name="servicio" value="Personal toda la noche"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Personal toda la noche</span></label>
+              </div>
+            </fieldset>
+
+            <div class="campo">
+              <label class="casilla"><input type="checkbox" id="n-privacidad"> He leído y acepto el aviso de privacidad de FaroLocal.</label>
+            </div>
+
+            <div class="acceso__acciones acceso__acciones--fila">
+              <button class="boton boton--secundario" type="button" id="atras">Atrás</button>
+              <button class="boton boton--cobalto" type="submit" id="registrar">Registrar mi negocio</button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="data/seed.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/campos.js"></script>
+  <script src="js/mapa.js"></script>
+  <script src="js/registro.js"></script>
 </body>
 </html>

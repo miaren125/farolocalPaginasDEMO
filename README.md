@@ -20,3 +20,14 @@ Abre http://localhost:8000/ y la guía de componentes en http://localhost:8000/_
 Todas las rutas son relativas para funcionar en `usuario.github.io/NOMBRE-DEL-REPO/`.
 
 Reglas de diseño y voz en `CLAUDE.md`.
+
+## Cuentas de demostración
+
+| Cuenta | Correo | Contraseña |
+|---|---|---|
+| Administración | admin@farolocal.mx | Admin123! |
+| Comercio aprobado | esquina@farolocal.mx · farmacia@ · taqueria@ · gasolinera@ · luna@ · donchuy@ | Comercio123 |
+| Comercio pendiente | tere@farolocal.mx · sol@farolocal.mx | Comercio123 |
+| Comercio rechazado | compadres@farolocal.mx | Comercio123 |
+
+Los datos viven en `localStorage` (`farolocal.web.v1`) y se siembran desde `data/seed.js` y `data/zona.json`. Las contraseñas se guardan como hash SHA-256 con sal fija: es solo una demostración, no un esquema de autenticación real. En el pie de los portales hay un botón para reiniciar los datos de ejemplo.

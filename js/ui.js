@@ -108,7 +108,14 @@
     });
   }
 
-  function iniciar() { iniciarDialogos(); iniciarPestanas(); }
+  /* Aviso que otra página dejó pendiente (p. ej. tras registrarse): se muestra una vez */
+  function avisoPendiente() {
+    var texto = null;
+    try { texto = window.sessionStorage.getItem("farolocal.aviso"); window.sessionStorage.removeItem("farolocal.aviso"); } catch (e) { return; }
+    if (texto) aviso(texto, { base: document.body.getAttribute("data-base") || "" });
+  }
+
+  function iniciar() { iniciarDialogos(); iniciarPestanas(); avisoPendiente(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
   else iniciar();
 

@@ -5,31 +5,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Iniciar sesión · FaroLocal</title>
   <meta name="description" content="Accede al portal de comercios o al de administración de FaroLocal.">
+  <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
-  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/acceso.css">
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
-  <header class="cabecera">
-    <div class="contenedor cabecera__fila">
-      <a class="cabecera__logo" href="index.html" aria-label="FaroLocal, ir al inicio"><img src="assets/img/logo-nav.png" alt="FaroLocal" width="120" height="59"></a>
-      <div class="cabecera__cuenta"><a class="boton boton--claro boton--chico" href="index.html">Volver al inicio</a></div>
+
+  <div class="acceso">
+    <div class="acceso__columna">
+      <aside class="acceso__marca">
+        <a class="acceso__logo" href="index.html" aria-label="FaroLocal, ir al inicio">
+          <img src="assets/img/logo-login.png" alt="FaroLocal" width="628" height="222">
+        </a>
+        <p class="acceso__frase">No te da la ruta más corta: te da <span>la ruta donde alguien podría ayudarte.</span></p>
+        <div class="acceso__arte">
+          <picture>
+            <source srcset="assets/img/ilustracion-tienda-login.webp" type="image/webp">
+            <img src="assets/img/ilustracion-tienda-login.png" alt="" width="1035" height="1068">
+          </picture>
+        </div>
+      </aside>
     </div>
-  </header>
-  <main id="contenido" class="contenedor" style="padding-block: 64px;">
-    <p class="antetitulo">FaroLocal</p>
-    <h1>Iniciar sesión</h1>
-    <p>Esta página se construye en un paso posterior.</p>
-  </main>
-  <footer class="pie">
-    <div class="contenedor">
-      <p>FaroLocal no garantiza seguridad: informa para decidir mejor un trayecto.</p>
-      <p>© 2026 FaroLocal · Proyecto del Concurso de Innovación Tecnológica</p>
+
+    <main class="acceso__form" id="contenido">
+      <div class="acceso__tarjeta">
+        <div>
+          <h1>Iniciar sesión</h1>
+        </div>
+        <p class="acceso__intro">Accede al portal de comercios o al de administración.</p>
+
+        <form id="form-login" novalidate>
+          <div class="alerta alerta--error" id="login-error" role="alert" hidden>
+            <svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-error"></use></svg>
+            <span id="login-error-texto"></span>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="correo">Correo electrónico</label>
+            <input class="campo__control" id="correo" name="correo" type="email" inputmode="email" autocomplete="username" placeholder="correo@ejemplo.com" required>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="password">Contraseña</label>
+            <div class="campo__envoltura">
+              <input class="campo__control" id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+              <button class="campo__ojo" type="button" id="ver-password" aria-pressed="false" aria-controls="password" aria-label="Mostrar contraseña">
+                <svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-ojo"></use></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="acceso__opciones">
+            <label class="casilla"><input type="checkbox" id="recordar" name="recordar"> Mantener sesión</label>
+            <button class="acceso__enlace" type="button" data-abre-dialogo="dlg-olvido">¿Olvidaste tu contraseña?</button>
+          </div>
+
+          <div class="acceso__acciones">
+            <button class="boton boton--cobalto boton--bloque" type="submit" id="entrar">Entrar</button>
+            <a class="boton boton--secundario boton--bloque" href="registro.html">Registrar mi negocio</a>
+          </div>
+        </form>
+      </div>
+
+      <details class="demo">
+        <summary>Cuentas de demostración</summary>
+        <table class="demo__tabla">
+          <caption class="solo-lectores">Cuentas de ejemplo para probar el sitio</caption>
+          <thead><tr><th scope="col">Cuenta</th><th scope="col">Correo y contraseña</th><th scope="col"><span class="solo-lectores">Acción</span></th></tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row">Administración</th>
+              <td><code>admin@farolocal.mx</code><br><code>Admin123!</code></td>
+              <td><button class="boton boton--secundario boton--chico" type="button" data-demo-correo="admin@farolocal.mx" data-demo-clave="Admin123!" aria-label="Usar la cuenta de Administración">Usar esta cuenta</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Comercio aprobado</th>
+              <td><code>esquina@farolocal.mx</code><br><code>Comercio123</code></td>
+              <td><button class="boton boton--secundario boton--chico" type="button" data-demo-correo="esquina@farolocal.mx" data-demo-clave="Comercio123" aria-label="Usar la cuenta de Comercio aprobado">Usar esta cuenta</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Comercio pendiente</th>
+              <td><code>tere@farolocal.mx</code><br><code>Comercio123</code></td>
+              <td><button class="boton boton--secundario boton--chico" type="button" data-demo-correo="tere@farolocal.mx" data-demo-clave="Comercio123" aria-label="Usar la cuenta de Comercio pendiente">Usar esta cuenta</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Comercio rechazado</th>
+              <td><code>compadres@farolocal.mx</code><br><code>Comercio123</code></td>
+              <td><button class="boton boton--secundario boton--chico" type="button" data-demo-correo="compadres@farolocal.mx" data-demo-clave="Comercio123" aria-label="Usar la cuenta de Comercio rechazado">Usar esta cuenta</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </main>
+  </div>
+
+  <dialog class="dialogo" id="dlg-olvido" aria-labelledby="dlg-olvido-t">
+    <div class="dialogo__cabeza">
+      <h2 id="dlg-olvido-t">¿Olvidaste tu contraseña?</h2>
+      <button class="dialogo__cerrar" type="button" data-cerrar aria-label="Cerrar">
+        <svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cerrar"></use></svg>
+      </button>
     </div>
-  </footer>
+    <div class="dialogo__cuerpo">
+      <p>En esta demostración no hay recuperación de contraseña. Usa una de las cuentas de ejemplo.</p>
+    </div>
+    <div class="dialogo__acciones">
+      <button class="boton boton--cobalto" type="button" data-cerrar>Entendido</button>
+    </div>
+  </dialog>
+
+  <script src="data/seed.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/campos.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
