@@ -461,6 +461,23 @@
     return { valido: true, titulo: c.titulo };
   }
 
+  /* Estado de un cupón para mostrarlo: desactivado > vencido > activo (los que aún no inician cuentan como activos) */
+  function estadoCupon(c) {
+    if (!c.activo) return "desactivado";
+    if (c.fin < hoyISO()) return "vencido";
+    return "activo";
+  }
+
+  /* Últimos cupones cobrados de un negocio (más recientes primero) */
+  function ultimosCanjes(negocioId, n) {
+    var d = D(); if (!d) return [];
+    var por = {};
+    d.cupones.filter(function (c) { return c.negocio_id === Number(negocioId); }).forEach(function (c) { por[c.id] = c; });
+    return d.canjes.filter(function (x) { return x.canjeado_en && por[x.cupon_id]; })
+      .sort(function (a, b) { return a.canjeado_en < b.canjeado_en ? 1 : (a.canjeado_en > b.canjeado_en ? -1 : b.id - a.id); })
+      .slice(0, n || 5).map(function (x) { return { codigo: x.codigo, titulo: por[x.cupon_id].titulo, canjeado_en: x.canjeado_en }; });
+  }
+
   /* ---------------------------------------------------------- reportes y resumen */
   function listarReportes(filtro) {
     var d = D(); if (!d) return [];
@@ -500,7 +517,7 @@
     validarNegocio: function (d) { return validarNegocio(d).errores; },
     listarNegocios: listarNegocios, obtenerNegocio: obtenerNegocio, negocioDeTitular: negocioDeTitular,
     registrarNegocio: registrarNegocio, editarNegocio: editarNegocio, aprobarNegocio: aprobarNegocio, rechazarNegocio: rechazarNegocio, panelNegocio: panelNegocio,
-    listarCupones: listarCupones, cuponesVigentes: cuponesVigentes, crearCupon: crearCupon, editarCupon: editarCupon, alternarCupon: alternarCupon,
+    listarCupones: listarCupones, estadoCupon: estadoCupon, ultimosCanjes: ultimosCanjes, cuponesVigentes: cuponesVigentes, crearCupon: crearCupon, editarCupon: editarCupon, alternarCupon: alternarCupon,
     borrarCupon: borrarCupon, generarCodigoPrueba: generarCodigoPrueba, validarCodigo: validarCodigo,
     listarReportes: listarReportes, aprobarReporte: aprobarReporte, descartarReporte: descartarReporte, reportesAprobadosPorArista: reportesAprobadosPorArista,
     resumenAdmin: resumenAdmin, montarBotonReinicio: montarBotonReinicio

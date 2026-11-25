@@ -136,7 +136,7 @@ textarea.campo__control:focus-visible { border-radius: var(--radio-3); }
 .aviso__cerrar:focus-visible { box-shadow: 0 0 0 5px var(--marfil); }
 
 /* ---------- Diálogo modal (<dialog>) ---------- */
-.dialogo { border: 0; padding: 0; width: min(520px, calc(100vw - 32px)); background: var(--marfil); color: var(--marino); border-radius: var(--radio-4); overflow: hidden; }
+.dialogo { border: 0; padding: 0; margin: auto; width: min(520px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; background: var(--marfil); color: var(--marino); border-radius: var(--radio-4); }
 .dialogo::backdrop { background: rgba(9, 29, 54, 0.72); }
 .dialogo[open] { animation: entra 200ms ease-out both; }
 .dialogo__cabeza { display: flex; align-items: center; justify-content: space-between; gap: var(--esp-4); padding: 20px 24px; background: var(--marino); color: var(--marfil); }

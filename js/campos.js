@@ -3,14 +3,13 @@
   "use strict";
 
   var NS = "http://www.w3.org/2000/svg";
-  var SPRITE = "assets/icons/iconos.svg";
 
   function icono(id) {
     var svg = document.createElementNS(NS, "svg");
     svg.setAttribute("class", "icono");
     svg.setAttribute("aria-hidden", "true");
     var use = document.createElementNS(NS, "use");
-    use.setAttribute("href", SPRITE + "#" + id);
+    use.setAttribute("href", (window.FaroCampos.base || "") + "assets/icons/iconos.svg#" + id);
     svg.appendChild(use);
     return svg;
   }
@@ -69,5 +68,5 @@
     enlazar(el, m.id, true);
   }
 
-  window.FaroCampos = { error: error, limpiar: limpiar, valido: valido };
+  window.FaroCampos = { base: "", error: error, limpiar: limpiar, valido: valido };
 })();

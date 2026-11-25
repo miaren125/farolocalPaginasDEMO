@@ -90,62 +90,7 @@
           <!-- Paso 2 -->
           <section class="paso" id="paso-2" aria-labelledby="titulo-paso-2" hidden>
             <h2 class="paso-titulo" id="titulo-paso-2" tabindex="-1">Paso 2 de 2: Tu negocio</h2>
-            <div class="campo">
-              <label class="campo__etiqueta" for="n-nombre">Nombre del negocio</label>
-              <input class="campo__control" id="n-nombre" type="text" autocomplete="organization" required>
-            </div>
-            <div class="campo">
-              <label class="campo__etiqueta" for="n-giro">Giro</label>
-              <select class="campo__control" id="n-giro" required>
-                <option value="">Elige el giro</option>
-                <option>Abarrotes</option><option>Farmacia</option><option>Taquería</option><option>Cafetería</option>
-                <option>Lonchería</option><option>Gasolinera</option><option>Papelería</option><option>Otro</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label class="campo__etiqueta" for="n-direccion">Dirección</label>
-              <input class="campo__control" id="n-direccion" type="text" autocomplete="street-address" required>
-            </div>
-
-            <fieldset class="campo" id="g-ubicacion">
-              <legend class="campo__etiqueta">Ubicación en el mapa</legend>
-              <div class="mapa-bloque">
-                <p class="campo__ayuda" id="ubicacion-ayuda">Toca el cruce más cercano a tu puerta.</p>
-                <div id="mapa-registro"></div>
-                <p class="cruce-elegido" id="cruce-elegido" aria-live="polite">Aún no eliges un cruce.</p>
-              </div>
-            </fieldset>
-
-            <fieldset class="campo" id="g-horario">
-              <legend class="campo__etiqueta">Horario</legend>
-              <div class="campo__fila">
-                <div class="campo">
-                  <label class="campo__etiqueta" for="n-abre">Abrimos a las</label>
-                  <input class="campo__control" id="n-abre" type="time" value="09:00" required>
-                </div>
-                <div class="campo">
-                  <label class="campo__etiqueta" for="n-cierra">Cerramos a las</label>
-                  <input class="campo__control" id="n-cierra" type="time" value="21:00" required>
-                </div>
-              </div>
-              <label class="casilla"><input type="checkbox" id="n-24h"> Abrimos las 24 horas</label>
-            </fieldset>
-
-            <fieldset class="campo" id="g-servicios">
-              <legend class="campo__etiqueta">Servicios para peatones</legend>
-              <span class="campo__ayuda" id="servicios-ayuda">Elige los que ofreces a quien camina de noche.</span>
-              <div class="opciones">
-                <label class="opcion"><input type="checkbox" name="servicio" value="Agua"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Agua</span></label>
-                <label class="opcion"><input type="checkbox" name="servicio" value="Teléfono"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Teléfono</span></label>
-                <label class="opcion"><input type="checkbox" name="servicio" value="Baño"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Baño</span></label>
-                <label class="opcion"><input type="checkbox" name="servicio" value="Cámara de vigilancia"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Cámara de vigilancia</span></label>
-                <label class="opcion"><input type="checkbox" name="servicio" value="Personal toda la noche"><span><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg>Personal toda la noche</span></label>
-              </div>
-            </fieldset>
-
-            <div class="campo">
-              <label class="casilla"><input type="checkbox" id="n-privacidad"> He leído y acepto el aviso de privacidad de FaroLocal.</label>
-            </div>
+            <div id="form-negocio-raiz" class="paso"></div>
 
             <div class="acceso__acciones acceso__acciones--fila">
               <button class="boton boton--secundario" type="button" id="atras">Atrás</button>
@@ -163,6 +108,7 @@
   <script src="js/ui.js"></script>
   <script src="js/campos.js"></script>
   <script src="js/mapa.js"></script>
+  <script src="js/form-negocio.js"></script>
   <script src="js/registro.js"></script>
 </body>
 </html>
