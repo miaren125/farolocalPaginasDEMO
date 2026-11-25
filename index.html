@@ -4,26 +4,167 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FaroLocal · Convierte tu negocio en un Faro de tu barrio</title>
-  <meta name="description" content="Landing de FaroLocal para negocios locales. Se construye en el siguiente paso.">
+  <meta name="description" content="Registra el horario de tu negocio, aparece en la Ruta Faro y atrae a quienes caminan frente a tu puerta. Sin costo de instalación.">
+  <meta name="theme-color" content="#0a1f36">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="FaroLocal">
+  <meta property="og:title" content="FaroLocal · Convierte tu negocio en un Faro de tu barrio">
+  <meta property="og:description" content="Registra tu horario, aparece en la Ruta Faro y atrae a quienes caminan frente a tu puerta.">
+  <meta property="og:image" content="assets/img/ilustracion-tienda.png">
+  <meta property="og:image:alt" content="Ilustración de una mujer con bolsas caminando frente a una tienda iluminada">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/landing.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
-<body>
+<body class="landing">
   <a class="saltar" href="#contenido">Saltar al contenido</a>
-  <main id="contenido" class="contenedor" style="padding-block: 64px;">
-    <p class="antetitulo">FaroLocal</p>
-    <h1>Inicio</h1>
-    <p>Esta página se construye en un paso posterior.</p>
+
+  <!-- 1) Barra de navegación -->
+  <header class="nav" id="nav">
+    <div class="nav__fila">
+      <a class="nav__logo" href="index.html" aria-label="FaroLocal, ir al inicio">
+        <img src="assets/img/logo-nav.png" alt="FaroLocal" width="153" height="75">
+      </a>
+      <button class="nav__toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Abrir el menú">
+        <svg class="icono icono--grande nav__icono-menu" aria-hidden="true"><use href="assets/icons/iconos.svg#i-menu"></use></svg>
+        <svg class="icono icono--grande nav__icono-cerrar" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cerrar"></use></svg>
+      </button>
+      <div class="nav__panel" id="nav-panel">
+        <nav aria-label="Principal">
+          <ul class="nav__links" role="list">
+            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#sello">Sello FaroLocal</a></li>
+          </ul>
+        </nav>
+        <a class="boton boton--primario nav__entrar" href="login.html">Iniciar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- 2) Hero -->
+    <section class="hero on-marino" id="inicio" aria-labelledby="hero-titulo">
+      <div class="contenedor hero__fila">
+        <div class="hero__texto">
+          <img class="hero__logo" src="assets/img/logo-hero.png" alt="FaroLocal" width="1000" height="314">
+          <h1 id="hero-titulo">Convierte tu negocio en un <span class="hero__faro">Faro</span> de tu barrio</h1>
+          <p class="hero__parrafo">Registra tu horario, aparece en la Ruta Faro y atrae a quienes caminan frente a tu puerta. Sin costo de instalación.</p>
+          <div class="hero__acciones">
+            <a class="boton boton--primario" href="registro.html">Registrar mi negocio</a>
+            <a class="hero__enlace" href="#como-funciona">Ver cómo funciona →</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <picture>
+            <source srcset="assets/img/ilustracion-tienda.webp" type="image/webp">
+            <img src="assets/img/ilustracion-tienda.png" alt="Ilustración de una mujer con bolsas caminando frente a una tienda iluminada" width="1035" height="1080">
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Cómo funciona -->
+    <section class="pasos on-azul" id="como-funciona" aria-labelledby="pasos-titulo">
+      <div class="contenedor revela">
+        <p class="antetitulo">Cómo funciona</p>
+        <h2 id="pasos-titulo">Tres pasos para encender tu luz</h2>
+        <ol class="pasos__lista" role="list">
+          <li class="tarjeta tarjeta--crema paso">
+            <span class="paso__numero" aria-hidden="true">1</span>
+            <h3 class="paso__titulo"><span class="solo-lectores">Paso 1: </span>Registra tu negocio</h3>
+            <p class="paso__texto">Captura tus datos, horario y servicios desde este portal.</p>
+          </li>
+          <li class="tarjeta tarjeta--crema paso">
+            <span class="paso__numero" aria-hidden="true">2</span>
+            <h3 class="paso__titulo"><span class="solo-lectores">Paso 2: </span>Validamos tu solicitud</h3>
+            <p class="paso__texto">Un administrador revisa tu información antes de publicarte en el mapa.</p>
+          </li>
+          <li class="tarjeta tarjeta--crema paso">
+            <span class="paso__numero" aria-hidden="true">3</span>
+            <h3 class="paso__titulo"><span class="solo-lectores">Paso 3: </span>Publica cupones</h3>
+            <p class="paso__texto">Ofrece beneficios canjeables con QR o código y mira cuántos se usan.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4) Beneficios -->
+    <section class="beneficios on-marino" id="beneficios" aria-labelledby="beneficios-titulo">
+      <div class="contenedor beneficios__rejilla revela">
+        <div class="beneficios__texto">
+          <p class="antetitulo">Beneficios</p>
+          <h2 id="beneficios-titulo">Tu negocio abierto también cuida la calle</h2>
+          <p>Cada Punto Faro es una luz encendida en el mapa. Quien camina de noche lo ve, lo elige en su ruta y llega a tu puerta.</p>
+        </div>
+        <ul class="beneficios__lista" role="list">
+          <li class="tarjeta tarjeta--marfil">
+            <h3 class="tarjeta__titulo">Más visibilidad</h3>
+            <p>Apareces como Faro abierto durante tu horario real.</p>
+          </li>
+          <li class="tarjeta tarjeta--marfil">
+            <h3 class="tarjeta__titulo">Cupones que atraen</h3>
+            <p>Publica ofertas y canjéalas con QR o código.</p>
+          </li>
+          <li class="tarjeta tarjeta--marfil">
+            <h3 class="tarjeta__titulo">Comunidad</h3>
+            <p>Forma parte de una red de apoyo entre vecinos.</p>
+          </li>
+        </ul>
+        <div class="faros" aria-hidden="true">
+          <img class="faros__lado" src="assets/img/linterna-izq.png" alt="" width="228" height="356" loading="lazy">
+          <img class="faros__central" src="assets/img/linterna-central.png" alt="" width="248" height="386" loading="lazy">
+          <img class="faros__lado faros__lado--der" src="assets/img/linterna-der.png" alt="" width="228" height="356" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) Sello -->
+    <section class="sello on-marfil" id="sello" aria-labelledby="sello-titulo">
+      <div class="contenedor sello__rejilla revela">
+        <div class="sello__texto">
+          <p class="antetitulo">Sello FaroLocal</p>
+          <h2 id="sello-titulo">Muestra que eres un Punto Faro</h2>
+          <p>Los negocios asociados reciben un sello para pegar en su puerta o ventana, y que la gente sepa que ahí hay un refugio abierto.</p>
+        </div>
+        <div class="tarjeta tarjeta--marino sello__tarjeta">
+          <img src="assets/img/sello.png" alt="Sello «Negocio asociado con FaroLocal»" width="449" height="254" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) Llamado a la acción -->
+    <section class="cta on-dorado" aria-labelledby="cta-titulo">
+      <div class="contenedor revela">
+        <h2 id="cta-titulo">Enciende tu luz esta semana</h2>
+        <a class="boton boton--cobalto" href="registro.html">Registrar mi negocio</a>
+      </div>
+    </section>
+
   </main>
-  <footer class="pie">
+
+  <!-- 7) Pie -->
+  <footer class="pie landing__pie">
     <div class="contenedor">
+      <img class="pie__logo" src="assets/img/logo-pie.png" alt="FaroLocal" width="359" height="140" loading="lazy">
       <p>FaroLocal no garantiza seguridad: informa para decidir mejor un trayecto.</p>
       <p>© 2026 FaroLocal · Proyecto del Concurso de Innovación Tecnológica</p>
+      <nav class="pie__enlaces" aria-label="Pie de página">
+        <a href="login.html">Iniciar sesión</a>
+        <a href="registro.html">Registrar mi negocio</a>
+      </nav>
     </div>
   </footer>
+
+  <script src="js/landing.js"></script>
 </body>
 </html>

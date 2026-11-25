@@ -11,8 +11,8 @@
 /* ---------- Botones ---------- */
 .boton {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--esp-2);
-  min-height: 46px; padding: 13px 22px;
-  border: 1.5px solid transparent; border-radius: var(--radio-pildora);
+  min-height: 46px; padding: 11.5px 20.5px; /* + borde 1.5 = 13/22 de Figma */
+  border: 1.5px solid transparent; border-radius: var(--radio-boton);
   font-family: var(--fuente-titulo); font-size: 15px; font-weight: var(--peso-medio); line-height: 20px;
   text-decoration: none; text-align: center; cursor: pointer;
   background: var(--cobalto); color: var(--marfil);
@@ -31,13 +31,13 @@
 .boton--claro:hover { background: var(--crema); color: var(--marino); }
 .boton--peligro { background: var(--rojo-apagado); color: #fff; }
 .boton--peligro:hover { background: #7f2e26; color: #fff; }
-.boton--chico { min-height: 36px; padding: 7px 16px; font-size: 14px; }
+.boton--chico { min-height: 36px; padding: 5.5px 14.5px; font-size: 14px; }
 .boton--bloque { width: 100%; }
 .boton:disabled, .boton[aria-disabled="true"] {
   background: var(--borde-suave); border-color: var(--borde-suave); color: #5b6678;
   cursor: not-allowed; transform: none;
 }
-.boton:focus-visible { box-shadow: 0 0 0 6px var(--marino); border-radius: var(--radio-pildora); }
+.boton:focus-visible { box-shadow: 0 0 0 6px var(--marino); border-radius: var(--radio-boton); }
 .on-marino .boton:focus-visible, .on-azul .boton:focus-visible { box-shadow: 0 0 0 6px var(--marfil); }
 
 /* ---------- Campos de formulario (Figma 1005:153) ---------- */
@@ -46,14 +46,14 @@
 .campo__ayuda { font-size: var(--texto-sm); color: var(--pizarra); }
 .campo__control {
   width: 100%; padding: 12px 14px;
-  background: var(--marfil); border: 1.5px solid var(--borde-suave); border-radius: var(--radio-pildora);
+  background: var(--marfil); border: 1.5px solid var(--borde-suave); border-radius: var(--radio-boton);
   font-size: var(--texto-sm); line-height: 20px; color: var(--marino);
   transition: border-color var(--transicion);
 }
 textarea.campo__control { border-radius: var(--radio-3); min-height: 96px; resize: vertical; }
 .campo__control::placeholder { color: #5b6678; opacity: 1; }
 .campo__control:hover { border-color: var(--dorado); }
-.campo__control:focus-visible { border-color: var(--cobalto); border-radius: var(--radio-pildora); }
+.campo__control:focus-visible { border-color: var(--cobalto); border-radius: var(--radio-boton); }
 textarea.campo__control:focus-visible { border-radius: var(--radio-3); }
 .campo__control:disabled { background: #eeeedd; color: #5b6678; cursor: not-allowed; }
 .campo__mensaje { display: none; align-items: flex-start; gap: 6px; font-size: var(--texto-sm); line-height: 20px; }

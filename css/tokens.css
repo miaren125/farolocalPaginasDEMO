@@ -69,6 +69,7 @@
   --radio-3: 16px;
   --radio-4: 24px;
   --radio-pildora: 999px;
+  --radio-boton: 10px;     /* botones y campos en Figma */
 
   /* Anchos */
   --ancho-contenedor: 1280px;

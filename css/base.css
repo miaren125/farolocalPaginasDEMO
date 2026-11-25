@@ -46,9 +46,10 @@ a:hover { color: var(--marino); }
 
 .contenedor {
   width: 100%;
-  max-width: var(--ancho-contenedor);
+  /* 1280 px de contenido + 80 px de margen a cada lado (Figma, base 1440) */
+  max-width: calc(var(--ancho-contenedor) + 160px);
   margin-inline: auto;
-  padding-inline: clamp(20px, 5.6vw, 80px);
+  padding-inline: clamp(20px, 5.5556vw, 80px);
 }
 
 .solo-lectores {

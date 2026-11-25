@@ -1,1 +1,170 @@
-/* Estilos específicos de la landing. Se completan en el siguiente paso. */
+/* Landing de FaroLocal. Medidas tomadas del frame "Landing portal" (Figma 1005:2, base 1440 px). */
+
+.landing { background: var(--marfil); }
+.landing main section { scroll-margin-top: 115px; }
+.landing h1, .landing h2 { text-wrap: wrap; } /* Figma no balancea las líneas */
+
+/* ---------- 1) Barra de navegación ---------- */
+.nav { position: sticky; top: 0; z-index: var(--z-cabecera); background: var(--marino); height: 115px; transition: box-shadow var(--transicion); }
+.nav.con-sombra { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22); }
+.nav__fila { position: relative; display: flex; align-items: center; height: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 43px 40px; }
+.nav__logo { display: block; flex: none; width: 153px; }
+.nav__logo img { width: 153px; height: 75px; }
+.nav__panel { flex: 1; display: flex; align-items: center; justify-content: space-between; padding-left: 125px; }
+.nav__links { display: flex; align-items: center; gap: 36px; list-style: none; padding: 0; }
+.nav__links a {
+  display: block; padding: 8px 0; border-bottom: 2px solid transparent;
+  color: var(--crema); font-size: var(--texto-sm); font-weight: var(--peso-medio); line-height: 20px; text-decoration: none;
+  transition: color var(--transicion), border-color var(--transicion);
+}
+.nav__links a:hover { color: var(--miel); }
+.nav__links a[aria-current="true"] { color: var(--miel); border-bottom-color: var(--dorado); }
+.nav a:focus-visible, .nav button:focus-visible { box-shadow: 0 0 0 5px var(--marfil); }
+.nav__toggle { display: none; }
+.nav__links a, .nav__entrar { white-space: nowrap; }
+
+/* ---------- 2) Hero ---------- */
+.hero { position: relative; background: var(--azul-hero); overflow-x: clip; padding-block: 80px 88px; z-index: 2; }
+/* suelo azul medio: continúa bajo la ilustración y entra a "Cómo funciona" */
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 77px; background: var(--azul-medio); }
+.hero__fila { position: relative; z-index: 1; display: flex; align-items: center; gap: 64px; }
+.hero__texto { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.hero__logo { width: 100%; max-width: 716px; height: auto; aspect-ratio: 716 / 225; object-fit: contain; object-position: left center; }
+.hero h1 { font-size: var(--titulo-h1); line-height: 64px; color: var(--marfil); font-weight: var(--peso-fuerte); }
+.hero__faro { color: var(--dorado); }
+.hero__parrafo { font-size: var(--texto-lg); line-height: 28px; color: var(--crema); max-width: 716px; }
+.hero__acciones { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.hero .hero__enlace { color: var(--marfil); font-family: var(--fuente-titulo); font-size: 15px; font-weight: var(--peso-medio); line-height: 20px; text-decoration: none; padding: 8px 0; }
+.hero .hero__enlace:hover { color: var(--miel); }
+.hero__enlace:focus-visible { box-shadow: 0 0 0 5px var(--marfil); }
+.hero__visual { position: relative; flex: none; width: 500px; height: 420px; }
+.hero__visual img { position: absolute; left: -48px; top: -100.5px; width: 646px; height: 674px; max-width: none; }
+
+/* ---------- 3) Cómo funciona ---------- */
+.pasos { position: relative; z-index: 1; background: var(--azul-medio); padding-block: 60px 126px; }
+.pasos .antetitulo { margin-bottom: 30px; }
+.pasos h2 { margin-bottom: 30px; }
+.pasos__lista { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.paso { position: relative; min-height: 185px; padding: 32px 28px 28px 28px; display: grid; grid-template-columns: 44px 1fr; column-gap: 29px; row-gap: 24px; align-items: center; }
+.paso__numero {
+  display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--dorado); color: var(--marino); font-family: var(--fuente-titulo); font-size: var(--titulo-h3); font-weight: var(--peso-medio); line-height: 28px;
+}
+.paso__titulo { font-size: var(--titulo-h3); line-height: 28px; font-weight: var(--peso-medio); color: var(--marino); }
+.paso__texto { grid-column: 1 / -1; margin: 0; font-size: var(--texto-base); line-height: 24px; color: var(--pizarra); }
+.tarjeta.paso .paso__texto { font-size: var(--texto-base); line-height: 24px; margin-top: 0; }
+
+/* ---------- 4) Beneficios ---------- */
+.beneficios { position: relative; z-index: 1; padding-top: 56px; overflow: hidden; }
+.beneficios__rejilla { display: grid; grid-template-columns: 1fr 1fr; column-gap: 64px; grid-template-areas: "texto lista" "faros lista"; align-items: start; }
+.beneficios__texto { grid-area: texto; max-width: 615px; padding-left: 7px; width: calc(100% + 7px); } /* Figma: x = 87, ancho 608 */
+.beneficios__texto .antetitulo { color: var(--marfil); margin-bottom: 16px; }
+.beneficios__texto h2 { color: var(--miel); margin-bottom: 16px; }
+.beneficios__texto p:last-child { color: var(--mantequilla); font-size: var(--texto-base); line-height: 24px; }
+.beneficios__lista { grid-area: lista; list-style: none; padding: 0; margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+.beneficios__lista .tarjeta { display: flex; flex-direction: column; gap: 6px; }
+.beneficios__lista .tarjeta p { margin: 0; }
+.faros {
+  --k: 1; grid-area: faros; margin-top: 4px; height: calc(339px * var(--k)); overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center; position: relative; padding-left: calc(46px * var(--k));
+}
+.faros img { height: auto; flex: none; margin-bottom: calc(-17px * var(--k)); }
+.faros__lado { width: calc(228px * var(--k)); }
+.faros__central { width: calc(248px * var(--k)); margin-inline: calc(-62px * var(--k)) calc(-53px * var(--k)); position: relative; z-index: 2; }
+.faros__lado--der { position: relative; z-index: 1; }
+.faros__lado:first-child { position: relative; z-index: 1; }
+
+/* ---------- 5) Sello ---------- */
+.sello { padding-block: 88px; }
+.sello__rejilla { display: grid; grid-template-columns: minmax(0, 552fr) minmax(0, 664fr); gap: 64px; align-items: center; }
+.sello__texto .antetitulo { margin-bottom: 16px; }
+.sello__texto h2 { margin-bottom: 16px; color: var(--marino); }
+.sello__texto p:last-child { color: var(--pizarra); line-height: 24px; }
+.sello__tarjeta { display: flex; justify-content: center; padding: 48px 56px; }
+.sello__tarjeta img { width: 100%; height: auto; aspect-ratio: 449 / 254; object-fit: cover; }
+
+/* ---------- 6) Llamado a la acción ---------- */
+.cta { padding-block: 64px; text-align: center; }
+.cta .contenedor { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.cta h2 { color: var(--marino); }
+
+/* ---------- 7) Pie ---------- */
+.landing__pie { padding-block: 40px; }
+.landing__pie .contenedor { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.landing__pie .pie__logo { width: 359px; max-width: 100%; height: auto; margin: 0; }
+.landing__pie p + p { margin-top: 0; }
+.pie__enlaces { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-top: 8px; }
+.pie__enlaces a { color: var(--crema); font-size: var(--texto-sm); text-underline-offset: 3px; }
+.pie__enlaces a:hover { color: var(--miel); }
+
+/* ---------- Entrada sutil (una sola vez) ---------- */
+.js .revela { opacity: 0; transform: translateY(12px); transition: opacity 300ms ease-out, transform 300ms ease-out; }
+.js .revela.visible { opacity: 1; transform: none; }
+
+/* ===================== Tablet y móvil ===================== */
+@media (max-width: 1099px) {
+  .nav__fila { padding-inline: 24px; }
+  .nav__panel { padding-left: 32px; }
+  .nav__links { gap: 20px; }
+}
+@media (max-width: 1199px) {
+  .hero { padding-block: 64px 0; }
+  .hero::after { height: clamp(48px, 9vw, 80px); }
+  .hero__fila { flex-direction: column; align-items: stretch; gap: 40px; }
+  .hero__visual { width: min(100%, 560px); height: auto; aspect-ratio: 1035 / 1080; margin: 0 auto -12px; }
+  .hero__visual img { position: static; width: 100%; height: auto; }
+  .pasos { padding-block: 60px 72px; }
+  .pasos__lista { grid-template-columns: 1fr; }
+  .beneficios { padding-bottom: 0; }
+  .beneficios__rejilla { grid-template-columns: 1fr; grid-template-areas: "texto" "lista" "faros"; row-gap: 0; }
+  .beneficios__texto { padding-left: 0; }
+  .beneficios__lista { margin-top: 32px; }
+  .faros { padding-left: 0; }
+  .faros { margin-top: 40px; }
+  .sello { padding-block: 72px; }
+  .sello__rejilla { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 767px) {
+  .landing main section { scroll-margin-top: 80px; }
+  .nav { height: 80px; }
+  .nav__fila { padding-inline: 20px; }
+  .nav__logo, .nav__logo img { width: 122px; height: auto; }
+  .nav__toggle {
+    display: none; margin-left: auto; align-items: center; justify-content: center; width: 48px; height: 48px;
+    background: transparent; border: 1.5px solid var(--crema); border-radius: var(--radio-boton); color: var(--crema);
+  }
+  .js .nav__toggle { display: inline-flex; }
+  .nav__icono-cerrar { display: none; }
+  .nav__toggle[aria-expanded="true"] .nav__icono-menu { display: none; }
+  .nav__toggle[aria-expanded="true"] .nav__icono-cerrar { display: block; }
+  .nav__panel { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 16px; padding: 16px 20px 24px; background: var(--marino); border-top: 1px solid var(--pizarra); }
+  .js .nav__panel { display: none; }
+  .js .nav__panel.abierto { display: flex; }
+  .nav__links { flex-direction: column; align-items: stretch; gap: 0; }
+  .nav__links a { padding: 14px 4px; font-size: var(--texto-base); border-bottom: 1px solid var(--pizarra); }
+  .nav__links a[aria-current="true"] { border-bottom-color: var(--dorado); }
+  .nav__entrar { width: 100%; }
+
+  .hero { padding-block: 40px 0; }
+  .hero h1 { line-height: 1.16; }
+  .hero__parrafo { line-height: 26px; }
+  .hero__acciones { flex-direction: column; align-items: stretch; width: 100%; gap: 8px; }
+  .hero__acciones .boton { width: 100%; }
+  .hero__enlace { text-align: center; padding: 12px 0; }
+  .pasos { padding-block: 48px 56px; }
+  .paso { padding: 24px 20px; column-gap: 20px; row-gap: 16px; }
+  .beneficios { padding-top: 48px; }
+  .faros { --k: 0.8; }
+  .sello { padding-block: 56px; }
+  .sello__tarjeta { padding: 28px 20px; }
+  .cta { padding-block: 48px; }
+  .cta .boton { width: 100%; }
+  .landing__pie .pie__logo { width: 240px; }
+}
+@media (max-width: 480px) { .faros { --k: 0.55; } }
+@media (max-width: 360px) { .faros { --k: 0.47; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .revela { opacity: 1; transform: none; transition: none; }
+}
