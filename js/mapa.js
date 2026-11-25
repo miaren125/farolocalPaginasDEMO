@@ -15,7 +15,7 @@
   var NS = "http://www.w3.org/2000/svg";
   var C = {
     fondo: "#0a1f36", calle3: "#8fa3bf", calle2: "#6c82a2", calle1: "#46597a",
-    miel: "#fad680", pizarra: "#223758", dorado: "#e8bc6a", marfil: "#fffff2", cruce: "#b9c6da"
+    miel: "#fad680", pizarra: "#223758", dorado: "#e8bc6a", marfil: "#fffff2", cruce: "#b9c6da", gris: "#8a96aa"
   };
 
   function el(nombre, atributos, padre) {
@@ -70,9 +70,9 @@
       var etiqueta = op.etiqueta || ("Mapa de la zona piloto" + (op.faros && op.faros.length ? " con " + op.faros.length + " Faros" : "") + ".");
 
       var svg = el("svg", { viewBox: [f(vb.x), f(vb.y), f(vb.w), f(vb.h)].join(" "), preserveAspectRatio: "xMidYMid meet", "class": "mapa__svg", focusable: "false" }, raiz);
-      if (op.seleccionable) {
+      if (op.seleccionable || typeof op.onMarcador === "function") {
         svg.setAttribute("role", "group");
-        svg.setAttribute("aria-label", etiqueta + " Elige el cruce más cercano. Con teclado usa las flechas para moverte y Enter para elegir.");
+        svg.setAttribute("aria-label", etiqueta + (op.seleccionable ? " Elige el cruce más cercano. Con teclado usa las flechas para moverte y Enter para elegir." : " Elige un aviso para ver su detalle."));
       } else {
         svg.setAttribute("role", "img");
         svg.setAttribute("aria-label", etiqueta);
@@ -97,14 +97,23 @@
         el("path", { d: medios[op.resaltarArista].d, fill: "none", stroke: C.dorado, "stroke-width": px(5), "stroke-linecap": "round", "aria-hidden": "true" }, svg);
       }
 
-      /* Faros: abierto = Miel; cerrado = Pizarra con borde Dorado */
+      /* Faros. Con "estado": encendido = Miel, en revisión = círculo hueco Dorado, devuelto = gris.
+         Sin estado: abierto = Miel; cerrado = Pizarra con borde Dorado. */
       var capaFaros = el("g", { "aria-hidden": "true" }, svg);
+      var rFaro = px(op.radioFaro || 4.5);
       (op.faros || []).forEach(function (fa) {
         var n = nodos[fa.nodo_id]; if (!n) return;
-        var ab = abierto(fa);
-        var c = el("circle", { cx: n.x, cy: n.y, r: px(4.5), fill: ab ? C.miel : C.pizarra }, capaFaros);
-        if (!ab) { c.setAttribute("stroke", C.dorado); c.setAttribute("stroke-width", px(2)); }
-        if (fa.nombre) el("title", {}, c).textContent = fa.nombre + (ab ? " · abierto ahora" : " · cerrado ahora");
+        var c, nota;
+        if (fa.estado === "encendido") { c = el("circle", { cx: n.x, cy: n.y, r: rFaro, fill: C.miel }, capaFaros); nota = " · Faro encendido"; }
+        else if (fa.estado === "revision") { c = el("circle", { cx: n.x, cy: n.y, r: rFaro, fill: "none", stroke: C.dorado, "stroke-width": px(2.5) }, capaFaros); nota = " · en revisión"; }
+        else if (fa.estado === "devuelto") { c = el("circle", { cx: n.x, cy: n.y, r: rFaro, fill: C.gris }, capaFaros); nota = " · devuelto"; }
+        else {
+          var ab = abierto(fa);
+          c = el("circle", { cx: n.x, cy: n.y, r: rFaro, fill: ab ? C.miel : C.pizarra }, capaFaros);
+          if (!ab) { c.setAttribute("stroke", C.dorado); c.setAttribute("stroke-width", px(2)); }
+          nota = ab ? " · abierto ahora" : " · cerrado ahora";
+        }
+        if (fa.nombre) el("title", {}, c).textContent = fa.nombre + nota;
       });
 
       if (op.resaltarNodo !== undefined && op.resaltarNodo !== null && nodos[op.resaltarNodo]) {
@@ -112,16 +121,30 @@
         el("circle", { cx: rn.x, cy: rn.y, r: px(9), fill: "none", stroke: C.marfil, "stroke-width": px(2.5), "aria-hidden": "true" }, svg);
       }
 
-      /* avisos: triángulos Dorado */
-      var capaAvisos = el("g", { "aria-hidden": "true" }, svg);
+      /* avisos: triángulos. Por revisar = Dorado; aprobado = Marino con borde Dorado; descartado = gris.
+         Con onMarcador son botones (clic, toque, Enter o Espacio) con aria-label. */
+      var interactivo = typeof op.onMarcador === "function";
+      var capaAvisos = el("g", interactivo ? {} : { "aria-hidden": "true" }, svg);
       (op.marcadores || []).forEach(function (m) {
         var x, y;
         if (m.arista_id && medios[m.arista_id]) { x = medios[m.arista_id].mx; y = medios[m.arista_id].my; }
         else if (m.nodo_id && nodos[m.nodo_id]) { x = nodos[m.nodo_id].x; y = nodos[m.nodo_id].y; }
         else return;
-        var r = px(7);
-        var t = el("polygon", { points: [x, y - r, x + r * 0.95, y + r * 0.7, x - r * 0.95, y + r * 0.7].map(f).join(","), fill: C.dorado, stroke: C.fondo, "stroke-width": px(1.5), "stroke-linejoin": "round" }, capaAvisos);
+        var sel = interactivo && m.id !== undefined && m.id === op.marcadorSeleccionado;
+        var g = el("g", interactivo
+          ? { "class": "mapa__marcador", role: "button", tabindex: "0", "aria-label": m.etiqueta || m.titulo || "Aviso", "aria-pressed": sel ? "true" : "false", "data-marcador": m.id }
+          : {}, capaAvisos);
+        var r = px(op.radioAviso || 8);
+        if (interactivo) el("circle", { cx: x, cy: y, r: px(17), fill: "transparent" }, g);
+        var relleno = m.estilo === "aprobado" ? C.fondo : (m.estilo === "descartado" ? C.gris : C.dorado);
+        var borde = m.estilo === "aprobado" ? C.dorado : C.fondo;
+        var t = el("polygon", { points: [x, y - r, x + r * 0.95, y + r * 0.7, x - r * 0.95, y + r * 0.7].map(f).join(","), fill: relleno, stroke: borde, "stroke-width": px(m.estilo === "aprobado" ? 2 : 1.5), "stroke-linejoin": "round" }, g);
         if (m.titulo) el("title", {}, t).textContent = m.titulo;
+        if (interactivo) {
+          el("circle", { cx: x, cy: y, r: px(13), fill: "none", "stroke-width": px(3), "class": "mapa__aro", stroke: sel ? C.marfil : "transparent" }, g);
+          g.addEventListener("click", function (e) { e.stopPropagation(); op.onMarcador(m); });
+          g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); op.onMarcador(m); } });
+        }
       });
 
       /* cruces seleccionables: botones con teclado (flechas + Enter) */
@@ -224,7 +247,13 @@
     return {
       seleccionar: function (id, avisar) { elegir(id, !!avisar); },
       seleccionado: function () { return seleccionado; },
-      actualizar: function (nuevas) { Object.assign(op, nuevas || {}); if (op.seleccionado !== undefined && op.seleccionado !== null) seleccionado = Number(op.seleccionado); dibujar(); },
+      actualizar: function (nuevas) {
+        Object.assign(op, nuevas || {});
+        if (op.seleccionado !== undefined && op.seleccionado !== null) seleccionado = Number(op.seleccionado);
+        var activo = document.activeElement && document.activeElement.getAttribute ? document.activeElement.getAttribute("data-marcador") : null;
+        dibujar();
+        if (activo !== null) { var g = raiz.querySelector('[data-marcador="' + activo + '"]'); if (g) g.focus(); }
+      },
       destruir: function () { destruido = true; if (obs) obs.disconnect(); raiz.parentNode && raiz.parentNode.removeChild(raiz); }
     };
   }
@@ -233,21 +262,36 @@
     var ul = document.createElement("ul");
     ul.className = "mapa__leyenda";
     var items = [];
-    var tieneFaros = op.faros && op.faros.length;
-    if (tieneFaros) {
-      items.push(["faro-abierto", "Faro abierto"]);
-      items.push(["faro-cerrado", "Faro cerrado"]);
+    var faros = op.faros || [];
+    if (faros.length && faros.some(function (x) { return x.estado; })) {
+      items.push(["faro-encendido", "Faro encendido"], ["faro-revision", "En revisión"], ["faro-devuelto", "Devuelto"]);
+    } else if (faros.length) {
+      items.push(["faro-abierto", "Faro abierto"], ["faro-cerrado", "Faro cerrado"]);
     }
-    items.push(["calle3", "Calle bien iluminada"]);
-    items.push(["calle1", "Poca luz"]);
-    if (op.marcadores && op.marcadores.length) items.push(["aviso", "Aviso de la calle"]);
+    items.push(["calle3", "Calle bien iluminada"], ["calle1", "Poca luz"]);
+    if (op.marcadores && op.marcadores.length) {
+      var conEstilo = op.marcadores.some(function (m) { return m.estilo; });
+      var estilos = {};
+      op.marcadores.forEach(function (m) { estilos[m.estilo || "pendiente"] = true; });
+      if (op.leyendaAvisos) estilos = { pendiente: true, aprobado: true, descartado: true };
+      var nombres = { pendiente: "Aviso por revisar", aprobado: "Aviso aprobado", descartado: "Aviso descartado" };
+      Object.keys(nombres).forEach(function (k) {
+        if (estilos[k]) items.push(["aviso-" + k, (conEstilo || op.leyendaAvisos) ? nombres[k] : "Aviso de la calle"]);
+      });
+    }
     items.forEach(function (it) {
       var li = document.createElement("li");
       var svg = el("svg", { width: 28, height: 14, viewBox: "0 0 28 14", "aria-hidden": "true", focusable: "false" });
-      if (it[0] === "faro-abierto") el("circle", { cx: 14, cy: 7, r: 4.5, fill: C.miel }, svg);
-      else if (it[0] === "faro-cerrado") el("circle", { cx: 14, cy: 7, r: 4, fill: C.pizarra, stroke: C.dorado, "stroke-width": 2 }, svg);
-      else if (it[0] === "aviso") el("polygon", { points: "14,1 21,12 7,12", fill: C.dorado, stroke: C.fondo, "stroke-width": 1.5, "stroke-linejoin": "round" }, svg);
-      else if (it[0] === "calle3") el("path", { d: "M3 7H25", stroke: C.calle3, "stroke-width": 8, "stroke-linecap": "round" }, svg);
+      var k = it[0];
+      if (k === "faro-abierto" || k === "faro-encendido") el("circle", { cx: 14, cy: 7, r: 4.5, fill: C.miel }, svg);
+      else if (k === "faro-cerrado") el("circle", { cx: 14, cy: 7, r: 4, fill: C.pizarra, stroke: C.dorado, "stroke-width": 2 }, svg);
+      else if (k === "faro-revision") el("circle", { cx: 14, cy: 7, r: 4, fill: "none", stroke: C.dorado, "stroke-width": 2.5 }, svg);
+      else if (k === "faro-devuelto") el("circle", { cx: 14, cy: 7, r: 4.5, fill: C.gris }, svg);
+      else if (k.indexOf("aviso") === 0) {
+        var est = k.slice(6);
+        el("polygon", { points: "14,1 21,12 7,12", fill: est === "aprobado" ? C.fondo : (est === "descartado" ? C.gris : C.dorado), stroke: est === "aprobado" ? C.dorado : C.fondo, "stroke-width": est === "aprobado" ? 2 : 1.5, "stroke-linejoin": "round" }, svg);
+      }
+      else if (k === "calle3") el("path", { d: "M3 7H25", stroke: C.calle3, "stroke-width": 8, "stroke-linecap": "round" }, svg);
       else el("path", { d: "M3 7H25", stroke: C.calle1, "stroke-width": 5, "stroke-linecap": "round", "stroke-dasharray": "2.5 7" }, svg);
       li.appendChild(svg);
       var t = document.createElement("span");

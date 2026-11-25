@@ -3,33 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Página no encontrada · FaroLocal</title>
-  <meta name="description" content="Esta página no existe en el sitio de FaroLocal.">
+  <!-- GitHub Pages sirve este archivo en CUALQUIER ruta que no exista (p. ej. /MI-REPO/algo/que/no-existe),
+       así que las rutas relativas de abajo se romperían. Por eso, y solo en esta página, se fija <base> a la raíz
+       del sitio: en usuario.github.io/MI-REPO/ la raíz es /MI-REPO/; con dominio propio o en local es /.
+       Es la única excepción a "todas las rutas relativas"; el resto de las páginas no usa <base>. -->
+  <script>
+    (function () {
+      var ruta = window.location.pathname;
+      var p = ruta.split("/");
+      var raiz;
+      if (/\/404\.html$/.test(ruta)) raiz = ruta.replace(/404\.html$/, "");               // abierta directamente: su propia carpeta
+      else if (/\.github\.io$/.test(window.location.hostname) && p.length > 2) raiz = "/" + p[1] + "/"; // Pages (sitio de proyecto)
+      else raiz = "/";                                                                       // dominio propio o local
+      document.write('<base href="' + raiz + '">');
+    })();
+  </script>
+  <title>Esta calle no tiene luz · FaroLocal</title>
+  <meta name="description" content="No encontramos la página que buscas. Regresa al inicio de FaroLocal.">
+  <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
-  <link rel="stylesheet" href="css/landing.css">
+  <style>
+    .no-encontrada { min-height: 100vh; display: flex; flex-direction: column; background: var(--azul-hero); color: var(--marfil); }
+    .no-encontrada main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--esp-4); text-align: center; padding: var(--esp-8) var(--esp-4); }
+    .no-encontrada .logo { width: min(320px, 70vw); height: auto; }
+    .no-encontrada .lampara { height: 150px; width: auto; filter: grayscale(1); opacity: 0.45; }
+    .no-encontrada h1 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem); color: var(--marfil); }
+    .no-encontrada p { max-width: 46ch; color: var(--crema); font-size: var(--texto-lg); }
+    .no-encontrada .acciones { display: flex; flex-wrap: wrap; gap: var(--esp-3); justify-content: center; margin-top: var(--esp-3); }
+    .no-encontrada .boton:focus-visible { box-shadow: 0 0 0 6px var(--marfil); }
+    .no-encontrada footer { padding: var(--esp-5) var(--esp-4); background: var(--marino); color: var(--crema); font-size: var(--texto-sm); text-align: center; }
+  </style>
 </head>
-<body>
+<body class="no-encontrada">
   <a class="saltar" href="#contenido">Saltar al contenido</a>
-  <header class="cabecera">
-    <div class="contenedor cabecera__fila">
-      <a class="cabecera__logo" href="index.html" aria-label="FaroLocal, ir al inicio"><img src="assets/img/logo-nav.png" alt="FaroLocal" width="120" height="59"></a>
-      <div class="cabecera__cuenta"><a class="boton boton--claro boton--chico" href="index.html">Volver al inicio</a></div>
+  <main id="contenido">
+    <a href="index.html" aria-label="FaroLocal, ir al inicio"><img class="logo" src="assets/img/logo-login.png" alt="FaroLocal" width="628" height="222"></a>
+    <img class="lampara" src="assets/img/linterna-central.png" alt="" width="96" height="150">
+    <h1>Esta calle no tiene luz</h1>
+    <p>No encontramos la página que buscas. Puede que la dirección esté mal escrita o que ya no exista. Regresa al inicio y retoma tu ruta.</p>
+    <div class="acciones">
+      <a class="boton boton--primario" href="index.html">Ir al inicio</a>
+      <a class="boton boton--claro" href="login.html">Iniciar sesión</a>
     </div>
-  </header>
-  <main id="contenido" class="contenedor" style="padding-block: 64px;">
-    <p class="antetitulo">FaroLocal</p>
-    <h1>No encontramos esta página</h1>
-    <p>Esta página se construye en un paso posterior.</p>
   </main>
-  <footer class="pie">
-    <div class="contenedor">
-      <p>FaroLocal no garantiza seguridad: informa para decidir mejor un trayecto.</p>
-      <p>© 2026 FaroLocal · Proyecto del Concurso de Innovación Tecnológica</p>
-    </div>
+  <footer>
+    <p style="font-size: inherit; max-width: none;">FaroLocal no garantiza seguridad: informa para decidir mejor un trayecto.</p>
   </footer>
 </body>
 </html>

@@ -251,6 +251,10 @@ textarea.campo__control:focus-visible { border-radius: var(--radio-3); }
 .mapa__svg { width: 100%; height: auto; display: block; touch-action: manipulation; }
 .mapa__nodo { cursor: pointer; outline: none; }
 .mapa__aro { stroke: transparent; }
-.mapa__nodo:focus-visible .mapa__aro { stroke: var(--marfil); }
+.mapa__nodo:focus-visible .mapa__aro, .mapa__marcador:focus-visible .mapa__aro { stroke: var(--marfil); }
+.mapa__marcador { cursor: pointer; outline: none; }
 .mapa__leyenda { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; padding: 10px 14px 12px; margin: 0; background: var(--marino); color: var(--crema); font-size: var(--texto-xs); border-top: 1px solid var(--pizarra); }
 .mapa__leyenda li { display: inline-flex; align-items: center; gap: 6px; }
+
+/* aro del aviso seleccionado en el mapa (la regla de .mapa__aro pisa el atributo stroke) */
+.mapa__marcador[aria-pressed="true"] .mapa__aro { stroke: var(--marfil); }

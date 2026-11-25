@@ -155,3 +155,77 @@
 }
 
 .caja-motivo[hidden], .estado__chips[hidden] { display: none; }
+
+/* =====================  Administración: mesa de revisión  ===================== */
+.chip-admin { display: inline-flex; align-items: center; margin-left: 8px; padding: 3px 10px; border-radius: var(--radio-pildora); background: var(--dorado); color: var(--marino); font-family: var(--fuente-titulo); font-size: var(--texto-xs); font-weight: var(--peso-fuerte); line-height: 16px; max-width: none !important; overflow: visible !important; }
+.vacio--compacto { padding: var(--esp-5) var(--esp-4); }
+.vacio--compacto img { height: 75px; }
+.icono--atras { transform: rotate(180deg); }
+
+/* Lo que espera tu revisión */
+.espera { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.espera__bloque h3 { font-size: var(--titulo-h3); margin-bottom: 16px; }
+.espera__lista { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.espera__item { display: grid; gap: 4px; padding: 18px 20px; background: var(--marfil); border: 1px solid var(--borde-suave); border-radius: var(--radio-3); color: var(--marino); text-decoration: none; transition: border-color var(--transicion), background-color var(--transicion); }
+.espera__item:hover { border-color: var(--dorado); background: var(--crema); color: var(--marino); }
+.espera__titulo { font-family: var(--fuente-titulo); font-weight: var(--peso-medio); font-size: 1.0625rem; }
+.espera__detalle { color: var(--pizarra); font-size: var(--texto-sm); }
+.espera__ir { display: inline-flex; align-items: center; gap: 6px; color: var(--cobalto); font-weight: var(--peso-medio); font-size: var(--texto-sm); margin-top: 4px; }
+
+/* Solicitudes: cola + detalle */
+.mesa { display: grid; grid-template-columns: minmax(280px, 380px) minmax(0, 1fr); gap: 40px; align-items: start; }
+.cola { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.cola__item { display: grid; gap: 4px; width: 100%; text-align: left; padding: 16px 18px; background: var(--marfil); border: 1.5px solid var(--borde-suave); border-radius: var(--radio-3); color: var(--marino); cursor: pointer; transition: border-color var(--transicion), background-color var(--transicion); }
+.cola__item:hover { border-color: var(--dorado); }
+.cola__item--activo { border: 2px solid var(--dorado); background: var(--crema); padding: calc(16px - 0.5px) calc(18px - 0.5px); }
+.cola__nombre { font-family: var(--fuente-titulo); font-weight: var(--peso-medio); font-size: 1.0625rem; }
+.cola__detalle { color: var(--pizarra); font-size: var(--texto-sm); }
+.detalle { display: flex; flex-direction: column; gap: 28px; }
+.detalle__cabeza { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.detalle__cabeza h2 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.25rem); line-height: 1.15; }
+.detalle__cabeza h2:focus-visible { outline-offset: 6px; }
+.detalle h3 { font-size: var(--texto-base); margin-bottom: 10px; }
+.detalle__texto { margin: 0; font-size: var(--texto-lg); line-height: 28px; max-width: 56ch; }
+.detalle__acciones { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px; }
+.detalle__volver { display: none; align-self: flex-start; }
+.datos { display: grid; gap: 14px; margin: 0; }
+.datos > div { display: grid; grid-template-columns: 160px 1fr; gap: 12px; padding-bottom: 14px; border-bottom: 2px dashed var(--dorado); }
+.datos dt { color: var(--pizarra); font-size: var(--texto-sm); font-weight: var(--peso-medio); }
+.datos dd { margin: 0; }
+.chips-servicios { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-servicio { padding: 6px 14px; border-radius: var(--radio-pildora); border: 1.5px solid var(--cobalto); color: var(--cobalto); font-size: var(--texto-sm); font-weight: var(--peso-medio); background: var(--marfil); }
+.historial { background: var(--crema); border-radius: var(--radio-3); padding: 18px 22px; }
+.historial p { margin: 0 0 10px; }
+.historial p:last-child { margin-bottom: 0; }
+.historial .caja-motivo { background: var(--marfil); }
+.detalle .mapa { max-width: 640px; }
+
+/* Avisos de la calle */
+.avisos-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.avisos-layout__mapa { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 14px; }
+.avisos-layout__lado { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.avisos-layout__lado .filtros { margin-bottom: 0; }
+.nota-mapa { display: flex; align-items: flex-start; gap: 10px; margin: 0; padding: 12px 16px; background: var(--crema); border: 1.5px solid var(--dorado); border-radius: var(--radio-2); font-size: var(--texto-sm); color: var(--marino); }
+.nota-mapa .icono { margin-top: 1px; }
+.detalle-aviso { padding-top: 8px; }
+
+@media (max-width: 1099px) {
+  .avisos-layout { grid-template-columns: 1fr; }
+  .avisos-layout__mapa { position: static; }
+}
+@media (max-width: 899px) {
+  .espera { grid-template-columns: 1fr; gap: 32px; }
+  /* en móvil la cola y el detalle son pantallas completas */
+  .mesa { grid-template-columns: 1fr; gap: 0; }
+  .mesa .mesa__detalle { display: none; }
+  .mesa--detalle .mesa__cola { display: none; }
+  .mesa--detalle .mesa__detalle { display: block; }
+  .detalle__volver { display: inline-flex; }
+  .datos > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+@media (max-width: 480px) {
+  .filtros { gap: 4px; }
+  .filtros__tab { padding: 10px 10px; font-size: 0.8125rem; }
+  .filtros__tab span { margin-left: 2px; }
+}

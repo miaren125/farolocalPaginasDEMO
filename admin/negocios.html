@@ -3,14 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Faros de la zona · FaroLocal</title>
-  <meta name="description" content="Consulta los negocios de la zona piloto.">
+  <title>Solicitudes de Faro · FaroLocal Administración</title>
+  <meta name="description" content="Revisa las solicitudes de nuevos Faros: enciéndelos o devuélvelos con un motivo.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/componentes.css">
+  <link rel="stylesheet" href="../css/acceso.css">
   <link rel="stylesheet" href="../css/portal.css">
   <script src="../data/seed.js"></script>
   <script src="../js/store.js"></script>
@@ -19,44 +22,45 @@
 </head>
 <body data-portal="admin" data-base="../">
   <a class="saltar" href="#contenido">Saltar al contenido</a>
-  <header class="cabecera">
-    <div class="contenedor cabecera__fila">
-      <a class="cabecera__logo" href="index.html" aria-label="FaroLocal, ir al inicio del portal"><img src="../assets/img/logo-nav.png" alt="FaroLocal" width="120" height="59"></a>
-      <nav class="cabecera__nav" aria-label="Principal">
-        <a href="index.html">Solicitudes de Faro</a>
-        <a href="negocios.html" aria-current="page">Faros de la zona</a>
-        <a href="reportes.html">Avisos de la calle</a>
-      </nav>
-      <div class="cabecera__cuenta">
-        <span class="cabecera__usuario"><img src="../assets/icons/cuenta.svg" alt="" width="32" height="32"> <span data-usuario></span></span>
-        <a class="boton boton--claro boton--chico" href="../login.html" data-salir>
-          <svg class="icono" aria-hidden="true"><use href="../assets/icons/iconos.svg#i-salir"></use></svg> Salir</a>
-      </div>
-    </div>
-  </header>
-  <main id="contenido" class="contenedor" style="padding-block: 64px;">
-    <p class="antetitulo" style="color: var(--cobalto);">Portal de administración</p>
-    <h1>Faros de la zona</h1>
-    <p id="resumen">Todos los Faros de la zona piloto. Esta página se construye en el siguiente paso.</p>
+  <main id="contenido" class="contenedor" tabindex="-1"></main>
 
-  </main>
-  <footer class="pie">
-    <div class="contenedor">
-      <p>FaroLocal no garantiza seguridad: informa para decidir mejor un trayecto.</p>
-      <p>© 2026 FaroLocal · Proyecto del Concurso de Innovación Tecnológica</p>
+  <dialog class="dialogo" id="dlg-encender" aria-labelledby="dlg-encender-t">
+    <div class="dialogo__cabeza">
+      <h2 id="dlg-encender-t">Encender Faro</h2>
+      <button class="dialogo__cerrar" type="button" data-cerrar aria-label="Cerrar"><svg class="icono" aria-hidden="true"><use href="../assets/icons/iconos.svg#i-cerrar"></use></svg></button>
     </div>
-  </footer>
+    <div class="dialogo__cuerpo"><p id="encender-texto"></p></div>
+    <div class="dialogo__acciones">
+      <button class="boton boton--secundario" type="button" data-cerrar>Todavía no</button>
+      <button class="boton boton--primario" type="button" id="encender-confirmar">Sí, encender el Faro</button>
+    </div>
+  </dialog>
+
+  <dialog class="dialogo" id="dlg-devolver" aria-labelledby="dlg-devolver-t">
+    <form id="form-devolver" novalidate>
+      <div class="dialogo__cabeza">
+        <h2 id="dlg-devolver-t">Devolver con motivo</h2>
+        <button class="dialogo__cerrar" type="button" data-cerrar aria-label="Cerrar"><svg class="icono" aria-hidden="true"><use href="../assets/icons/iconos.svg#i-cerrar"></use></svg></button>
+      </div>
+      <div class="dialogo__cuerpo">
+        <p id="devolver-intro"></p>
+        <div class="campo">
+          <label class="campo__etiqueta" for="d-motivo">Motivo para el titular</label>
+          <textarea class="campo__control" id="d-motivo" rows="4" maxlength="300" aria-describedby="d-contador" required></textarea>
+          <span class="campo__ayuda" id="d-contador">0 de 300 caracteres. El titular verá este texto tal cual.</span>
+        </div>
+      </div>
+      <div class="dialogo__acciones">
+        <button class="boton boton--secundario" type="button" data-cerrar>Cancelar</button>
+        <button class="boton boton--cobalto" type="submit" id="devolver-confirmar">Devolver solicitud</button>
+      </div>
+    </form>
+  </dialog>
+
   <script src="../js/ui.js"></script>
   <script src="../js/campos.js"></script>
   <script src="../js/mapa.js"></script>
-  <script>
-    (async function () {
-      var ses = Auth.require("admin", "../");
-      if (!ses) return;
-      await Store.init();
-      Auth.montarCabecera("../");
-
-    })();
-  </script>
+  <script src="../js/portal.js"></script>
+  <script src="../js/admin-negocios.js"></script>
 </body>
 </html>

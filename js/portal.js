@@ -7,7 +7,7 @@
   var NS = "http://www.w3.org/2000/svg";
   var NAV = {
     comercio: [["panel.html", "Mi Faro", "panel"], ["cupones.html", "Mis cupones", "cupones"], ["validar.html", "Cobrar un cupón", "validar"], ["sello.html", "Mi sello", "sello"]],
-    admin: [["index.html", "Solicitudes de Faro", "solicitudes"], ["negocios.html", "Faros de la zona", "faros"], ["reportes.html", "Avisos de la calle", "avisos"]]
+    admin: [["index.html", "Resumen", "resumen"], ["negocios.html", "Solicitudes de Faro", "solicitudes"], ["reportes.html", "Avisos de la calle", "avisos"]]
   };
   var LINTERNAS = { izq: "linterna-izq.png", central: "linterna-central.png", der: "linterna-der.png" };
   var MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
@@ -51,6 +51,11 @@
   function fechaCorta(iso) {
     var p = String(iso).split("-");
     return Number(p[2]) + " " + MESES[Number(p[1]) - 1] + " " + p[0];
+  }
+  function fechaHora(iso) {
+    if (!iso) return "";
+    var d = String(iso).split("T");
+    return fechaCorta(d[0]) + (d[1] ? " · " + d[1].slice(0, 5) : "");
   }
   function vigencia(c) { return "Del " + fechaCorta(c.inicio) + " al " + fechaCorta(c.fin); }
 
@@ -125,7 +130,7 @@
         h("a", { class: "cabecera__logo", href: items[0][0], "aria-label": "FaroLocal, ir al inicio del portal" }, imagen("logo-nav.png", { alt: "FaroLocal", width: 120, height: 59 })),
         menu, nav,
         h("div", { class: "cabecera__cuenta" },
-          h("span", { class: "cabecera__usuario" }, h("img", { src: baseActual + "assets/icons/cuenta.svg", alt: "", width: 32, height: 32 }), h("span", { "data-usuario": "", text: sesion ? sesion.nombre : "" })),
+          h("span", { class: "cabecera__usuario" }, h("img", { src: baseActual + "assets/icons/cuenta.svg", alt: "", width: 32, height: 32 }), h("span", { "data-usuario": "", text: sesion ? sesion.nombre : "" }), cfg.rol === "admin" ? h("span", { class: "chip-admin", text: "Administración" }) : null),
           h("a", { class: "boton boton--claro boton--chico", href: baseActual + "login.html", "data-salir": "" }, icono("i-salir"), "Salir"))));
 
     var linterna = LINTERNAS[cfg.linterna] || LINTERNAS.central;
@@ -151,6 +156,16 @@
     return sesion;
   }
 
+  /* Faros de todos los negocios con su estado, para el mapa de administración */
+  function farosMapa() {
+    var mapa = { aprobado: "encendido", pendiente: "revision", rechazado: "devuelto" };
+    return window.Store.listarNegocios().map(function (n) { return { nodo_id: n.nodo_id, nombre: n.nombre, estado: mapa[n.estado] || "revision" }; });
+  }
+  function nombreDe(correo) {
+    var u = correo && window.Store.usuarioPorCorreo(correo);
+    return u ? u.nombre : (correo || "");
+  }
+
   /* Cambia la linterna de la banda (a color o apagada) cuando cambia el estado del Faro */
   function linternaBanda(apagada) {
     var a = document.querySelector(".banda__arte");
@@ -169,7 +184,7 @@
 
   window.Portal = {
     montar: montar, h: h, vaciar: vaciar, icono: icono, imagen: imagen, copiar: copiar, linternaBanda: linternaBanda,
-    chipNegocio: chipNegocio, chipAbierto: chipAbierto, chipCupon: chipCupon, boleto: boleto, fechaCorta: fechaCorta, vigencia: vigencia,
+    chipNegocio: chipNegocio, chipAbierto: chipAbierto, chipCupon: chipCupon, boleto: boleto, fechaCorta: fechaCorta, fechaHora: fechaHora, vigencia: vigencia, farosMapa: farosMapa, nombreDe: nombreDe,
     base: function () { return baseActual; }
   };
 })();
