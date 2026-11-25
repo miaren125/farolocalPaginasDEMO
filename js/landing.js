@@ -1,0 +1,1 @@
+/* Comportamiento de la landing. Se implementa en el siguiente paso. */

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Guía de componentes · FaroLocal</title>
+  <meta name="description" content="Guía visual interna de los componentes de FaroLocal.">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/portal.css">
+  <style>
+    .seccion { padding-block: var(--esp-8); }
+    .seccion h2 { margin-top: var(--esp-2); margin-bottom: var(--esp-5); }
+    .sub { margin: var(--esp-6) 0 var(--esp-3); font-size: var(--texto-base); }
+    .fila { display: flex; flex-wrap: wrap; gap: var(--esp-3); align-items: center; }
+    .fila--grande { gap: var(--esp-8); }
+    .rejilla { display: grid; gap: var(--esp-4); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: start; }
+    .on-dorado .boton--secundario { border-color: var(--marino); color: var(--marino); }
+    .on-dorado .boton--secundario:hover { background: var(--marino); color: var(--marfil); }
+  </style>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="cabecera__logo" href="#contenido" aria-label="FaroLocal, inicio"><img src="assets/img/logo-nav.png" alt="FaroLocal" width="120" height="59"></a>
+      <nav class="cabecera__nav" aria-label="Principal">
+        <a href="#" aria-current="page">Mi Faro</a><a href="#">Mis cupones</a><a href="#">Cobrar un cupón</a><a href="#">Mi sello</a>
+      </nav>
+      <div class="cabecera__cuenta">
+        <span class="cabecera__usuario"><img src="assets/icons/cuenta.svg" alt="" width="32" height="32"> Abarrotes La Esquina</span>
+        <a class="boton boton--claro boton--chico" href="#"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-salir"></use></svg> Salir</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="banda">
+    <div class="contenedor banda__fila">
+      <div>
+        <p class="antetitulo">Guía visual</p>
+        <h1>Componentes de FaroLocal</h1>
+        <p class="banda__texto">Todo lo que se usa en la landing y en los portales, sobre cada fondo de la marca.</p>
+      </div>
+      <div class="banda__arte" aria-hidden="true">
+        <img src="assets/img/linterna-izq.png" alt="" width="122" height="190"><img src="assets/img/linterna-central.png" alt="" width="122" height="190"><img src="assets/img/linterna-der.png" alt="" width="122" height="190">
+      </div>
+    </div>
+  </div>
+
+  <main id="contenido">
+<section class="seccion on-marino" aria-labelledby="t-marino">
+  <div class="contenedor">
+    <p class="antetitulo">Fondo Marino</p>
+    <h2 id="t-marino">Marino</h2>
+    <h3 class="sub">Botones</h3><div class="fila">
+      <a class="boton boton--primario" href="#">Registrar mi negocio</a>
+      <a class="boton boton--cobalto" href="#">Entrar</a>
+      <a class="boton boton--secundario" href="#">Secundario</a>
+      <a class="boton boton--claro" href="#">Claro</a>
+      <button class="boton boton--peligro" type="button">Quitar cupón</button>
+      <button class="boton boton--primario boton--chico" type="button"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-mas"></use></svg> Chico</button>
+      <button class="boton boton--primario" type="button" disabled>Deshabilitado</button>
+    </div>
+    <h3 class="sub">Chips de estado</h3><div class="fila">
+      <span class="chip chip--encendido"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-encendido"></use></svg> Faro encendido</span>
+      <span class="chip chip--revision"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-revision"></use></svg> En revisión</span>
+      <span class="chip chip--cambios"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cambios"></use></svg> Necesita cambios</span>
+      <span class="chip chip--abierto"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-abierto"></use></svg> Abierto ahora</span>
+      <span class="chip chip--cerrado"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cerrado"></use></svg> Cerrado ahora</span>
+    </div>
+    <h3 class="sub">Tarjetas</h3><div class="rejilla">
+      <article class="tarjeta tarjeta--crema"><h4 class="tarjeta__titulo">Tarjeta crema</h4><p>Pasos y datos de cada Faro.</p></article>
+      <article class="tarjeta tarjeta--marfil"><h4 class="tarjeta__titulo">Tarjeta marfil</h4><p>Beneficios y listas.</p></article>
+      <article class="tarjeta tarjeta--marino"><h4 class="tarjeta__titulo">Tarjeta marino</h4><p>Para resaltar sobre fondos claros.</p></article>
+    </div>
+    <h3 class="sub">Contadores</h3><div class="fila fila--grande">
+      <div class="contador"><span class="contador__numero">128</span><span class="contador__etiqueta">Cupones canjeados</span></div>
+      <div class="contador"><span class="contador__numero">12</span><span class="contador__etiqueta">Faros encendidos</span></div>
+    </div>
+    <h3 class="sub">Boleto (cupón)</h3><div class="boleto">
+      <div class="boleto__cuerpo"><span class="boleto__titulo">2x1 en café de olla</span><span class="boleto__detalle">Válido hasta el 30 de noviembre · Una vez por persona</span></div>
+      <div class="boleto__lado"><span class="boleto__codigo">FARO-7K2M9Q</span><span class="boleto__nota">Muéstralo en caja</span></div>
+    </div>
+    <h3 class="sub">Separador de calle</h3><hr class="separador">
+    <h3 class="sub">Campos de formulario</h3>
+    <div class="rejilla">
+      <div class="campo"><label class="campo__etiqueta" for="c1-marino">Correo electrónico</label><input class="campo__control" id="c1-marino" type="email" placeholder="correo@ejemplo.com"><span class="campo__ayuda">Estado normal con ayuda.</span></div>
+      <div class="campo campo--error"><label class="campo__etiqueta" for="c2-marino">Contraseña</label><input class="campo__control" id="c2-marino" type="password" value="1234" aria-invalid="true" aria-describedby="e2-marino"><span class="campo__mensaje campo__mensaje--error" id="e2-marino"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-error"></use></svg> Escribe al menos 8 caracteres.</span></div>
+      <div class="campo campo--valido"><label class="campo__etiqueta" for="c3-marino">Nombre del negocio</label><input class="campo__control" id="c3-marino" type="text" value="Abarrotes La Esquina" aria-describedby="v3-marino"><span class="campo__mensaje campo__mensaje--valido" id="v3-marino"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg> Se ve bien.</span></div>
+      <div class="campo"><label class="campo__etiqueta" for="c4-marino">Deshabilitado</label><input class="campo__control" id="c4-marino" type="text" value="No editable" disabled></div>
+      <div class="campo"><label class="campo__etiqueta" for="c5-marino">Cuéntanos de tu negocio</label><textarea class="campo__control" id="c5-marino" placeholder="Qué vendes, desde cuándo…"></textarea></div>
+      <label class="casilla"><input type="checkbox"> Mantener sesión</label>
+    </div><h3 class="sub">Pestañas</h3>
+    <div data-pestanas>
+      <div class="pestanas__lista" role="tablist" aria-label="Ejemplo de pestañas">
+        <button class="pestanas__tab" role="tab" id="tab1-marino" aria-controls="pan1-marino" aria-selected="true">Activos</button>
+        <button class="pestanas__tab" role="tab" id="tab2-marino" aria-controls="pan2-marino" aria-selected="false">Vencidos</button>
+        <button class="pestanas__tab" role="tab" id="tab3-marino" aria-controls="pan3-marino" aria-selected="false">Borradores</button>
+      </div>
+      <div class="pestanas__panel" role="tabpanel" id="pan1-marino" aria-labelledby="tab1-marino" tabindex="0"><p>Aquí van tus cupones activos.</p></div>
+      <div class="pestanas__panel" role="tabpanel" id="pan2-marino" aria-labelledby="tab2-marino" tabindex="0" hidden><p>Cupones que ya vencieron.</p></div>
+      <div class="pestanas__panel" role="tabpanel" id="pan3-marino" aria-labelledby="tab3-marino" tabindex="0" hidden><p>Cupones que aún no publicas.</p></div>
+    </div>
+    <h3 class="sub">Aviso y diálogo</h3>
+    <div class="fila">
+      <button class="boton boton--cobalto" type="button" data-aviso="ok">Mostrar aviso</button>
+      <button class="boton boton--secundario" type="button" data-aviso="error">Mostrar aviso de error</button>
+      <button class="boton boton--primario" type="button" data-abre-dialogo="dlg">Abrir diálogo</button>
+    </div>
+    <h3 class="sub">Estado vacío</h3>
+    <div class="vacio"><img src="assets/img/linterna-central.png" alt="" width="77" height="120"><p>Aún no tienes cupones. Crea el primero y enciende tu luz.</p><a class="boton boton--primario boton--chico" href="#">Crear mi primer cupón</a></div>
+  </div>
+</section>
+<section class="seccion on-azul" aria-labelledby="t-azul">
+  <div class="contenedor">
+    <p class="antetitulo">Fondo azul medio</p>
+    <h2 id="t-azul">Azul medio</h2>
+    <h3 class="sub">Botones</h3><div class="fila">
+      <a class="boton boton--primario" href="#">Registrar mi negocio</a>
+      <a class="boton boton--cobalto" href="#">Entrar</a>
+      <a class="boton boton--secundario" href="#">Secundario</a>
+      <a class="boton boton--claro" href="#">Claro</a>
+      <button class="boton boton--peligro" type="button">Quitar cupón</button>
+      <button class="boton boton--primario boton--chico" type="button"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-mas"></use></svg> Chico</button>
+      <button class="boton boton--primario" type="button" disabled>Deshabilitado</button>
+    </div>
+    <h3 class="sub">Chips de estado</h3><div class="fila">
+      <span class="chip chip--encendido"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-encendido"></use></svg> Faro encendido</span>
+      <span class="chip chip--revision"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-revision"></use></svg> En revisión</span>
+      <span class="chip chip--cambios"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cambios"></use></svg> Necesita cambios</span>
+      <span class="chip chip--abierto"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-abierto"></use></svg> Abierto ahora</span>
+      <span class="chip chip--cerrado"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cerrado"></use></svg> Cerrado ahora</span>
+    </div>
+    <h3 class="sub">Tarjetas</h3><div class="rejilla">
+      <article class="tarjeta tarjeta--crema"><h4 class="tarjeta__titulo">Tarjeta crema</h4><p>Pasos y datos de cada Faro.</p></article>
+      <article class="tarjeta tarjeta--marfil"><h4 class="tarjeta__titulo">Tarjeta marfil</h4><p>Beneficios y listas.</p></article>
+      <article class="tarjeta tarjeta--marino"><h4 class="tarjeta__titulo">Tarjeta marino</h4><p>Para resaltar sobre fondos claros.</p></article>
+    </div>
+    <h3 class="sub">Contadores</h3><div class="fila fila--grande">
+      <div class="contador"><span class="contador__numero">128</span><span class="contador__etiqueta">Cupones canjeados</span></div>
+      <div class="contador"><span class="contador__numero">12</span><span class="contador__etiqueta">Faros encendidos</span></div>
+    </div>
+    <h3 class="sub">Boleto (cupón)</h3><div class="boleto">
+      <div class="boleto__cuerpo"><span class="boleto__titulo">2x1 en café de olla</span><span class="boleto__detalle">Válido hasta el 30 de noviembre · Una vez por persona</span></div>
+      <div class="boleto__lado"><span class="boleto__codigo">FARO-7K2M9Q</span><span class="boleto__nota">Muéstralo en caja</span></div>
+    </div>
+    <h3 class="sub">Separador de calle</h3><hr class="separador">
+    
+  </div>
+</section>
+<section class="seccion on-marfil" aria-labelledby="t-marfil">
+  <div class="contenedor">
+    <p class="antetitulo">Fondo Marfil</p>
+    <h2 id="t-marfil">Marfil</h2>
+    <h3 class="sub">Botones</h3><div class="fila">
+      <a class="boton boton--primario" href="#">Registrar mi negocio</a>
+      <a class="boton boton--cobalto" href="#">Entrar</a>
+      <a class="boton boton--secundario" href="#">Secundario</a>
+      <a class="boton boton--claro" href="#">Claro</a>
+      <button class="boton boton--peligro" type="button">Quitar cupón</button>
+      <button class="boton boton--primario boton--chico" type="button"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-mas"></use></svg> Chico</button>
+      <button class="boton boton--primario" type="button" disabled>Deshabilitado</button>
+    </div>
+    <h3 class="sub">Chips de estado</h3><div class="fila">
+      <span class="chip chip--encendido"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-encendido"></use></svg> Faro encendido</span>
+      <span class="chip chip--revision"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-revision"></use></svg> En revisión</span>
+      <span class="chip chip--cambios"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cambios"></use></svg> Necesita cambios</span>
+      <span class="chip chip--abierto"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-abierto"></use></svg> Abierto ahora</span>
+      <span class="chip chip--cerrado"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cerrado"></use></svg> Cerrado ahora</span>
+    </div>
+    <h3 class="sub">Tarjetas</h3><div class="rejilla">
+      <article class="tarjeta tarjeta--crema"><h4 class="tarjeta__titulo">Tarjeta crema</h4><p>Pasos y datos de cada Faro.</p></article>
+      <article class="tarjeta tarjeta--marfil"><h4 class="tarjeta__titulo">Tarjeta marfil</h4><p>Beneficios y listas.</p></article>
+      <article class="tarjeta tarjeta--marino"><h4 class="tarjeta__titulo">Tarjeta marino</h4><p>Para resaltar sobre fondos claros.</p></article>
+    </div>
+    <h3 class="sub">Contadores</h3><div class="fila fila--grande">
+      <div class="contador"><span class="contador__numero">128</span><span class="contador__etiqueta">Cupones canjeados</span></div>
+      <div class="contador"><span class="contador__numero">12</span><span class="contador__etiqueta">Faros encendidos</span></div>
+    </div>
+    <h3 class="sub">Boleto (cupón)</h3><div class="boleto">
+      <div class="boleto__cuerpo"><span class="boleto__titulo">2x1 en café de olla</span><span class="boleto__detalle">Válido hasta el 30 de noviembre · Una vez por persona</span></div>
+      <div class="boleto__lado"><span class="boleto__codigo">FARO-7K2M9Q</span><span class="boleto__nota">Muéstralo en caja</span></div>
+    </div>
+    <h3 class="sub">Separador de calle</h3><hr class="separador">
+    <h3 class="sub">Campos de formulario</h3>
+    <div class="rejilla">
+      <div class="campo"><label class="campo__etiqueta" for="c1-marfil">Correo electrónico</label><input class="campo__control" id="c1-marfil" type="email" placeholder="correo@ejemplo.com"><span class="campo__ayuda">Estado normal con ayuda.</span></div>
+      <div class="campo campo--error"><label class="campo__etiqueta" for="c2-marfil">Contraseña</label><input class="campo__control" id="c2-marfil" type="password" value="1234" aria-invalid="true" aria-describedby="e2-marfil"><span class="campo__mensaje campo__mensaje--error" id="e2-marfil"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-error"></use></svg> Escribe al menos 8 caracteres.</span></div>
+      <div class="campo campo--valido"><label class="campo__etiqueta" for="c3-marfil">Nombre del negocio</label><input class="campo__control" id="c3-marfil" type="text" value="Abarrotes La Esquina" aria-describedby="v3-marfil"><span class="campo__mensaje campo__mensaje--valido" id="v3-marfil"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-check"></use></svg> Se ve bien.</span></div>
+      <div class="campo"><label class="campo__etiqueta" for="c4-marfil">Deshabilitado</label><input class="campo__control" id="c4-marfil" type="text" value="No editable" disabled></div>
+      <div class="campo"><label class="campo__etiqueta" for="c5-marfil">Cuéntanos de tu negocio</label><textarea class="campo__control" id="c5-marfil" placeholder="Qué vendes, desde cuándo…"></textarea></div>
+      <label class="casilla"><input type="checkbox"> Mantener sesión</label>
+    </div><h3 class="sub">Pestañas</h3>
+    <div data-pestanas>
+      <div class="pestanas__lista" role="tablist" aria-label="Ejemplo de pestañas">
+        <button class="pestanas__tab" role="tab" id="tab1-marfil" aria-controls="pan1-marfil" aria-selected="true">Activos</button>
+        <button class="pestanas__tab" role="tab" id="tab2-marfil" aria-controls="pan2-marfil" aria-selected="false">Vencidos</button>
+        <button class="pestanas__tab" role="tab" id="tab3-marfil" aria-controls="pan3-marfil" aria-selected="false">Borradores</button>
+      </div>
+      <div class="pestanas__panel" role="tabpanel" id="pan1-marfil" aria-labelledby="tab1-marfil" tabindex="0"><p>Aquí van tus cupones activos.</p></div>
+      <div class="pestanas__panel" role="tabpanel" id="pan2-marfil" aria-labelledby="tab2-marfil" tabindex="0" hidden><p>Cupones que ya vencieron.</p></div>
+      <div class="pestanas__panel" role="tabpanel" id="pan3-marfil" aria-labelledby="tab3-marfil" tabindex="0" hidden><p>Cupones que aún no publicas.</p></div>
+    </div>
+    <h3 class="sub">Aviso y diálogo</h3>
+    <div class="fila">
+      <button class="boton boton--cobalto" type="button" data-aviso="ok">Mostrar aviso</button>
+      <button class="boton boton--secundario" type="button" data-aviso="error">Mostrar aviso de error</button>
+      <button class="boton boton--primario" type="button" data-abre-dialogo="dlg">Abrir diálogo</button>
+    </div>
+    <h3 class="sub">Estado vacío</h3>
+    <div class="vacio"><img src="assets/img/linterna-central.png" alt="" width="77" height="120"><p>Aún no tienes cupones. Crea el primero y enciende tu luz.</p><a class="boton boton--primario boton--chico" href="#">Crear mi primer cupón</a></div>
+  </div>
+</section>
+<section class="seccion on-dorado" aria-labelledby="t-dorado">
+  <div class="contenedor">
+    <p class="antetitulo">Fondo Dorado</p>
+    <h2 id="t-dorado">Dorado</h2>
+    <h3 class="sub">Botones</h3><div class="fila">
+      <a class="boton boton--primario" href="#">Registrar mi negocio</a>
+      <a class="boton boton--cobalto" href="#">Entrar</a>
+      <a class="boton boton--secundario" href="#">Secundario</a>
+      <a class="boton boton--claro" href="#">Claro</a>
+      <button class="boton boton--peligro" type="button">Quitar cupón</button>
+      <button class="boton boton--primario boton--chico" type="button"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-mas"></use></svg> Chico</button>
+      <button class="boton boton--primario" type="button" disabled>Deshabilitado</button>
+    </div>
+    <h3 class="sub">Chips de estado</h3><div class="fila">
+      <span class="chip chip--encendido"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-encendido"></use></svg> Faro encendido</span>
+      <span class="chip chip--revision"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-revision"></use></svg> En revisión</span>
+      <span class="chip chip--cambios"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cambios"></use></svg> Necesita cambios</span>
+      <span class="chip chip--abierto"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-abierto"></use></svg> Abierto ahora</span>
+      <span class="chip chip--cerrado"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cerrado"></use></svg> Cerrado ahora</span>
+    </div>
+    <h3 class="sub">Tarjetas</h3><div class="rejilla">
+      <article class="tarjeta tarjeta--crema"><h4 class="tarjeta__titulo">Tarjeta crema</h4><p>Pasos y datos de cada Faro.</p></article>
+      <article class="tarjeta tarjeta--marfil"><h4 class="tarjeta__titulo">Tarjeta marfil</h4><p>Beneficios y listas.</p></article>
+      <article class="tarjeta tarjeta--marino"><h4 class="tarjeta__titulo">Tarjeta marino</h4><p>Para resaltar sobre fondos claros.</p></article>
+    </div>
+    <h3 class="sub">Contadores</h3><div class="fila fila--grande">
+      <div class="contador"><span class="contador__numero">128</span><span class="contador__etiqueta">Cupones canjeados</span></div>
+      <div class="contador"><span class="contador__numero">12</span><span class="contador__etiqueta">Faros encendidos</span></div>
+    </div>
+    <h3 class="sub">Boleto (cupón)</h3><div class="boleto">
+      <div class="boleto__cuerpo"><span class="boleto__titulo">2x1 en café de olla</span><span class="boleto__detalle">Válido hasta el 30 de noviembre · Una vez por persona</span></div>
+      <div class="boleto__lado"><span class="boleto__codigo">FARO-7K2M9Q</span><span class="boleto__nota">Muéstralo en caja</span></div>
+    </div>
+    <h3 class="sub">Separador de calle</h3><hr class="separador">
+    
+  </div>
+</section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <img src="assets/img/logo-pie.png" alt="FaroLocal" width="220" height="86">
+      <p>FaroLocal no garantiza seguridad: informa para decidir mejor un trayecto.</p>
+      <p>© 2026 FaroLocal · Proyecto del Concurso de Innovación Tecnológica</p>
+    </div>
+  </footer>
+
+  <dialog class="dialogo" id="dlg" aria-labelledby="dlg-t">
+    <div class="dialogo__cabeza">
+      <h2 id="dlg-t">¿Quitar este cupón?</h2>
+      <button class="dialogo__cerrar" type="button" data-cerrar aria-label="Cerrar"><svg class="icono" aria-hidden="true"><use href="assets/icons/iconos.svg#i-cerrar"></use></svg></button>
+    </div>
+    <div class="dialogo__cuerpo"><p>Tus vecinos ya no lo verán en el mapa. Puedes volver a crearlo cuando quieras.</p>
+      <div class="campo"><label class="campo__etiqueta" for="dlg-c">Motivo (opcional)</label><input class="campo__control" id="dlg-c" type="text"></div></div>
+    <div class="dialogo__acciones">
+      <button class="boton boton--secundario" type="button" data-cerrar>Mejor no</button>
+      <button class="boton boton--peligro" type="button" data-cerrar>Sí, quitarlo</button>
+    </div>
+  </dialog>
+
+  <script src="js/ui.js"></script>
+  <script>
+    document.querySelectorAll("[data-aviso]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (b.getAttribute("data-aviso") === "error") FaroUI.aviso("No pudimos guardar. Intenta de nuevo.", { tipo: "error" });
+        else FaroUI.aviso("Listo, tu Faro quedó encendido.");
+      });
+    });
+  </script>
+</body>
+</html>

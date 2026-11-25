@@ -1,0 +1,86 @@
+/* Tokens de FaroLocal. Valores tomados de Figma (archivo YjCmbuFrI3Fr6ZFx9ah2g5). */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/montserrat.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("../assets/fonts/nunito-sans.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Color: marca (Figma manda sobre el CLAUDE.md) */
+  --marino: #0a1f36;
+  --medianoche: #010242;
+  --pizarra: #223758;
+  --cobalto: #1d4480;
+  --dorado: #e8bc6a;
+  --miel: #fad680;
+  --marfil: #fffff2;
+  --crema: #fff5d0;
+  --mantequilla: #ffeb9d;
+  --azul-medio: #47618e;   /* "Cómo funciona" y suelo de la ilustración */
+  --azul-hero: #0d2444;    /* fondo del hero (coincide con la ilustración) */
+  --borde-suave: #e6dfc4;
+
+  /* Color: estados (apagados, con texto e icono siempre) */
+  --rojo-apagado: #9b3b32;
+  --rojo-fondo: #f6dcd8;
+  --verde-apagado: #2f6b4f;
+  --verde-fondo: #dcefe4;
+
+  /* Tipografía */
+  --fuente-titulo: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fuente-texto: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --peso-normal: 400;
+  --peso-medio: 600;
+  --peso-fuerte: 700;
+  --peso-extra: 800;
+
+  --texto-xs: 0.75rem;                                   /* 12 */
+  --texto-sm: 0.875rem;                                  /* 14 */
+  --texto-base: 1rem;                                    /* 16 */
+  --texto-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);   /* 18 */
+  --titulo-h3: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem); /* 20 */
+  --titulo-h2: clamp(1.5rem, 1.3rem + 0.9vw, 1.75rem);   /* 28 */
+  --titulo-h1: clamp(2rem, 1.2rem + 3.4vw, 3.5rem);      /* 56 */
+
+  /* Espaciado */
+  --esp-1: 4px;
+  --esp-2: 8px;
+  --esp-3: 12px;
+  --esp-4: 16px;
+  --esp-5: 24px;
+  --esp-6: 32px;
+  --esp-7: 48px;
+  --esp-8: 64px;
+  --esp-9: 96px;
+
+  /* Radios */
+  --radio-1: 8px;
+  --radio-2: 12px;
+  --radio-3: 16px;
+  --radio-4: 24px;
+  --radio-pildora: 999px;
+
+  /* Anchos */
+  --ancho-contenedor: 1280px;
+  --ancho-texto: 68ch;
+
+  /* Capas */
+  --z-base: 1;
+  --z-cabecera: 100;
+  --z-menu: 200;
+  --z-dialogo: 1000;
+  --z-aviso: 1100;
+
+  /* Movimiento */
+  --transicion: 180ms ease;
+}

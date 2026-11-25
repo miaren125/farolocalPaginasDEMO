@@ -1,0 +1,1 @@
+/* Inicio y cierre de sesion de la demostracion. Se implementa en el paso de portales. */
